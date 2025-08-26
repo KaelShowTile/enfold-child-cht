@@ -26,10 +26,12 @@ jQuery(document).ready(function($) {
         let product_qty = $button.data('quantity') || $button.closest('form.cart').find('[name="quantity"]').val() || 1;
 
         //meta pixil
-        fbq('track', 'AddToCart', {
-          content_ids: [product_id], 
-          content_type: 'product', 
-        });
+        if (typeof fbq !== 'undefined' && typeof fbq === 'function'){
+            fbq('track', 'AddToCart', {
+                content_ids: [product_id], 
+                content_type: 'product', 
+            });
+        }
         
         // For variable products
         if ($button.closest('form.variations_form').length) {
