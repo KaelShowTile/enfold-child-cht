@@ -8,7 +8,7 @@
 	// Get the current collection post id
 	$collection_id = get_the_ID();
 
-	$title = __( 'Blog - Latest News', 'avia_framework' ); //default blog title
+	$title = __( 'Tile Collection', 'avia_framework' ); //default blog title
 	$t_link = home_url( '/' );
 	$t_sub = '';
 
@@ -203,5 +203,7 @@
 
 		</div><!-- close default .container_wrap element -->
 <?php
-		get_footer();
+		
+		
+get_footer();
 

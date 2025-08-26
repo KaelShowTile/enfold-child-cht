@@ -936,3 +936,15 @@ function ava_disable_gmap() {
   },10,1);
 }
 add_action('after_setup_theme', 'ava_disable_gmap');
+
+//refresh sub-total
+add_filter('woocommerce_add_to_cart_fragments', 'cht_update_cart_fragments');
+function cht_update_cart_fragments($fragments) {
+    // Update cart subtotal amount
+    $fragments['.cht-cart-total-amount'] = '<span class="cht-cart-total-amount">' . WC()->cart->get_cart_subtotal() . '</span>';
+    
+    // Optional: Update cart count if you have it
+    $fragments['.cart-count'] = '<span class="cart-count">' . WC()->cart->get_cart_contents_count() . '</span>';
+    
+    return $fragments;
+}
