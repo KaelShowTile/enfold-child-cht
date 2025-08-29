@@ -69,7 +69,7 @@ h4, h5, h6{font-size: 1rem; font-weight: 600; letter-spacing: 0.5px; text-transf
     100% { transform: rotate(360deg); }
 }
 
-@keyframes slider-look-effect {
+@keyframes slider-look-effect-one-half {
     0% { opacity: 1; z-index: 1; visibility: visible;}
     45% { opacity: 1; z-index: 1; visibility: visible;}
     50% { opacity: 0; z-index: 1; visibility: visible;}
@@ -78,6 +78,30 @@ h4, h5, h6{font-size: 1rem; font-weight: 600; letter-spacing: 0.5px; text-transf
     95% { opacity: 0; z-index: 1; visibility: visible;}
     100% { opacity: 1; z-index: 1; visibility: visible;}
 }
+
+@keyframes slider-look-effect-one-thrid {
+    0% { opacity: 1; z-index: 2; visibility: visible;}
+    30% { opacity: 1; z-index: 2; visibility: visible;}
+    33% { opacity: 0; z-index: 2; visibility: visible;}
+    33.1% { opacity: 0; z-index: -1; visibility: hidden;}
+    96.9% { opacity: 0; z-index: -1; visibility: hidden;}
+    97% { opacity: 0; z-index: 2; visibility: visible;}
+    100% { opacity: 1; z-index: 2; visibility: visible;}
+}
+
+@keyframes slider-look-effect-two-thrid {
+    0% { opacity: 0; z-index: -1; visibility: hidden;}
+    29.9% { opacity: 0; z-index: -1; visibility: hidden;}
+    30% { opacity: 1; z-index: 1; visibility: visible;}
+    63% { opacity: 1; z-index: 1; visibility: visible;}
+    66% { opacity: 0; z-index: -1; visibility: hidden;}
+    100% { opacity: 0; z-index: 1; visibility: hidden;}
+}
+
+#slider-look-like-images-bg{position: absolute; top: 0; opacity: 1 !important;z-index: 0;}
+.slider-look-like-images.slider-animation-one-third{animation: slider-look-effect-one-thrid 10s linear infinite; z-index: 2;}
+.slider-look-like-images.slider-animation-two-thrid{animation: slider-look-effect-two-thrid 10s linear infinite; z-index: 1; position: absolute; top: 0;}
+
 
 /* woocommerce globle */
 ul.woocommerce-error{background-color: #f8f8f8;}
@@ -260,9 +284,6 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #cht-group-img-banner .avia_codeblock_section .banner-red-label{background: #ff0000; display: inline-block; padding: 1px 8px 2px; color: #fff; font-weight: 600; margin: 0 0 10px -1px;}
 #cht-group-img-banner .avia_codeblock_section .banner-blue-label{background: #61cae9; display: inline-block; padding: 1px 8px 2px; color: #fff; font-weight: 600; margin: 0 0 10px -1px;}
 #cht-group-img-banner .avia_codeblock_section:after{content: ">"; color: #232f3d; position: absolute; bottom: 25px; right: 20px; font-size: 2rem;  font-weight: 900;}
-
-#home-banner-bg-image{position: absolute; top: 0; opacity: 1 !important;z-index: 0;}
-.slider-look-like-images{animation: slider-look-effect 10s linear infinite; z-index: 1;}
 
 .homepage-icon-list-container .iconbox_content_title{font-size: 1.25rem; color: #fff; margin-bottom: 5px; display: inline-block;}
 .homepage-icon-list-container p{line-height: 1.25;}

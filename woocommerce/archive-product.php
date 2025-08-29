@@ -141,7 +141,6 @@ if($current_category)
 
 echo '<div class="container cate-qa-container">';
 
-
 $qa_cate = get_field('cat_q&a', 'product_cat_' . $current_category->term_id);
 
 if( $qa_cate ){
@@ -152,7 +151,7 @@ if( $qa_cate ){
 
 	foreach ($qa_cate as $row){
 		$question = esc_html($row['cate_qna_question']);
-		$answer = esc_html($row['cate_qna_answer']);
+		$answer = wp_filter_nohtml_kses($row['cate_qna_answer']);
 
 		$qa_shortcode_string = $qa_shortcode_string . "[av_toggle title='" . $question . "' title_open='' tags='' title_pos='' slide_speed='' custom_id='' aria_collapsed='' aria_expanded='' element_template='' one_element_template='' av_uid='' sc_version='1.0' ]" . $answer . "[/av_toggle]";
 	}
