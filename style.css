@@ -58,7 +58,7 @@ h4, h5, h6{font-size: 1rem; font-weight: 600; letter-spacing: 0.5px; text-transf
 #top .av-control-minimal .avia-slideshow-arrows a.prev-slide{left: 15px;}
 #top .av-control-minimal .avia-slideshow-arrows a.next-slide{right: 15px;}
 
-#top.wp-singular.page-template-default.page{padding: 0;}
+/* #top.wp-singular.page-template-default.page{padding: 0;} */
 
 /* Hide chatbox icon on visualizer */
 .page-id-76520 #chat-widget-container{display: none;}
@@ -539,7 +539,6 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .avia-product-slider-container .avia-content-slider-inner ul.products{display: flex; flex-wrap: wrap; align-items: stretch;}
 .avia-product-slider-container .avia-content-slider-inner .products li.product{display: flex; margin: 0 1% 20px 0;}
 
-.product-slider .swiper-slide a{border: 1px solid #eee;}
 .product-slider .swiper-slide a h3{padding: 10px 20px 0; font-size: 1rem; letter-spacing: 0.5px;}
 #top .product-slider .swiper-slide a .price{padding-bottom: 10px; display: inline-block; text-align: center;}
 
