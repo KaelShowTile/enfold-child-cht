@@ -203,9 +203,9 @@ $product_tile = $product->get_title();
 
 				wc_get_template_part( 'single-product/short-description' );
 
-				if (function_exists('get_gto_linked_varaiation'))
+				if (function_exists('display_linked_product'))
 				{
-					get_gto_linked_varaiation($product);
+					echo display_linked_product(get_the_ID());
 				}
 				
 				woocommerce_template_single_add_to_cart();
