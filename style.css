@@ -429,8 +429,9 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #cht-footer-container .cht-footer-class a{font-weight: 300;  color: #232f3d; line-height: 1.8; letter-spacing: 0.5px; transition: 0.5s;}
 #cht-footer-container .cht-footer-class strong{color: #232f3d;}
 #cht-footer-container .cht-footer-class a:hover{color: #232f3d;}
-#cht-footer-container img{float: right; width: 100%;}
+#cht-footer-container img{width: 100%;}
 #cht-footer-container .eway-logo{max-width: 180px; margin: 20px auto auto auto;}
+.footer-mail-sub-form{padding-left: 55px;}
 
 /* elements */
 #top .wc-block-components-quantity-selector__input[type="text"]{margin-bottom: 0;}
