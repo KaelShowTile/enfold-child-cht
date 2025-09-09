@@ -588,7 +588,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
 .wc-block-components-main.wc-block-checkout__main.wp-block-woocommerce-checkout-fields-block{padding-right: 2%;}
 .wp-block-woocommerce-checkout .wc-block-checkout__actions_row .wc-block-components-checkout-return-to-cart-button{display: none;}
-.wp-block-woocommerce-checkout .wc-block-checkout__actions_row .wc-block-components-checkout-place-order-button{width: 100%;}
+#top .wp-block-woocommerce-checkout .wc-block-checkout__actions_row .wc-block-components-checkout-place-order-button{width: 100%;}
 
 /* after checkout - thank you */
 #cht-checkout-container{max-width: 1280px; margin: auto;}

@@ -948,3 +948,12 @@ function cht_update_cart_fragments($fragments) {
     
     return $fragments;
 }
+
+//change the title of stripe payment
+add_filter('woocommerce_gateway_title', 'change_stripe_gateway_title', 10, 2);
+function change_stripe_gateway_title($title, $id) {
+    if ($id === 'stripe') {
+        return __('Credit Cards', 'your-text-domain');
+    }
+    return $title;
+}
