@@ -950,10 +950,8 @@ function cht_update_cart_fragments($fragments) {
 }
 
 //change the title of stripe payment
-
-
 function change_stripe_gateway_title( $translation, $text, $domain ) {
-	if ( $domain == 'woocommerce-payments' && $text == 'stripe' ) {
+	if ( $domain == 'woocommerce-payments' && $text == 'Stripe' ) {
 		$translation = 'Credit Cards';
 	}
 	return $translation;
