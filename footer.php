@@ -355,6 +355,10 @@ global $avia_config;
 
 <div id="fb-root"></div>
 
+<?php if ( is_checkout() ): ?>
+<script type="text/javascript" async="" src="<?php get_site_url() ?>/wp-content/themes/enfold-child-cht/js/rename-stripe.js"></script>
+<?php endif; ?>
+
 <?php
 
 	/* Always have wp_footer() just before the closing </body>
