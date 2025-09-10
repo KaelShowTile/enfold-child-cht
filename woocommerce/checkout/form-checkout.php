@@ -64,3 +64,5 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 </form>
 
 <?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
+
+<script type="text/javascript" async="" src="<?php get_site_url() ?>/wp-content/themes/enfold-child-cht/js/rename-stripe.js"></script>
