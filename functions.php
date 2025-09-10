@@ -948,3 +948,26 @@ function cht_update_cart_fragments($fragments) {
     
     return $fragments;
 }
+
+
+
+add_action('wp_enqueue_scripts', 'change_stripe_gateway_title_blocks');
+function change_stripe_gateway_title_blocks() {
+    if (!is_checkout()) return;
+    
+    wp_add_inline_script(
+        'wc-blocks-checkout', // WooBlocks checkout script handle
+        '
+        (function() {
+            const originalRegister = window.wc.wcBlocksRegistry.registerPaymentMethod;
+            
+            window.wc.wcBlocksRegistry.registerPaymentMethod = function(options) {
+                if (options.name === "stripe" || options.gatewayId === "stripe") {
+                    options.label = "Credit Card/Debit Card";
+                }
+                return originalRegister(options);
+            };
+        })();
+        '
+    );
+}
