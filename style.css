@@ -1024,6 +1024,8 @@ ul.woocommerce-error{background-color: #f8f8f8;}
     .swiper.product-slider .swiper-button-next, .swiper.product-slider .swiper-button-prev{ display: none;}
     .swiper-button-next, .swiper-button-prev{display: none;}
 
+    .footer-payment-icons{margin: auto; display: inline-block;}
+
     @supports (-webkit-touch-callout: none){
       .image_text-slider .swiper-slide{width: calc(100% - 60px) !important;}
       .review-slider .swiper-slide{width: calc(100% - 60px) !important;}
