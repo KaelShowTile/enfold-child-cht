@@ -433,6 +433,9 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #cht-footer-container .eway-logo{max-width: 180px; margin: 20px auto auto auto;}
 .footer-mail-sub-form{padding-left: 55px;}
 
+.footer-payment-icons li{list-style: none; margin: auto 10px auto 0; float: left;}
+#cht-footer-container .footer-payment-icons li img{width: 48px;}
+
 /* elements */
 #top .wc-block-components-quantity-selector__input[type="text"]{margin-bottom: 0;}
 
