@@ -63,6 +63,12 @@
 					<?php
 
 					echo '<div class="collection-product-list-container glint-products-container products columns-4">';
+
+					if(get_field('product_list_title', $collection_id)){
+						echo '<h3>';
+						the_field('product_list_title', $collection_id);
+						echo '</h3>';
+					}	
 					
 						// Get query values
 						$product_categories = get_field('select_product_category', $collection_id); 
