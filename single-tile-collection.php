@@ -67,7 +67,7 @@
 					if(get_field('product_list_title', $collection_id)){
 						echo '<h3>';
 						the_field('product_list_title', $collection_id);
-						echo '</h3>';
+						echo 'Products</h3>';
 					}else{
 						
 						echo'<h3>' . get_the_title( $collection_id ) . '</h3>';
