@@ -70,7 +70,7 @@
 						echo '</h3>';
 					}else{
 						
-						echo'<h3>' . get_the_title( $collection_id ) . 'Products</h3>';
+						echo'<h3>' . get_the_title( $collection_id ) . ' Products</h3>';
 					}	
 					
 						// Get query values
