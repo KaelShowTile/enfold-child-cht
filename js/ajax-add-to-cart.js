@@ -64,6 +64,10 @@ jQuery(document).ready(function($) {
                 
                 // Trigger fragment refresh
                 $(document.body).trigger('wc_fragment_refresh');
+
+                //Boardcast the update so checkout page knows
+                const channel = new BroadcastChannel('cart_updates');
+                channel.postMessage({ action: 'cart_updated' });
                 
                 // Show sidebar and switch tab
                 setTimeout(function() {
@@ -94,6 +98,8 @@ jQuery(document).ready(function($) {
 
     window.handleAddSampleToCart = function() {
         $(document.body).trigger('wc_fragment_refresh');
+        const channel = new BroadcastChannel('cart_updates');
+        channel.postMessage({ action: 'cart_updated' });
         const $sidebar = $('#cht-cart-sidebar');
 
         setTimeout(function(){

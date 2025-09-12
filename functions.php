@@ -949,3 +949,29 @@ function cht_update_cart_fragments($fragments) {
     return $fragments;
 }
 
+
+//remove cart item
+add_action('wp_ajax_cht_remove_cart_item', 'cht_remove_cart_item');
+add_action('wp_ajax_nopriv_cht_remove_cart_item', 'cht_remove_cart_item');
+function cht_remove_cart_item() {
+    if (!isset($_POST['cart_item_key']) || !isset($_POST['nonce'])) {
+        wp_send_json_error('Invalid request');
+    }
+    
+    $cart_item_key = sanitize_text_field($_POST['cart_item_key']);
+    $nonce = sanitize_text_field($_POST['nonce']);
+    
+    // Verify nonce with the correct action
+    if (!wp_verify_nonce($nonce, 'remove_item_' . $cart_item_key)) {
+        wp_send_json_error('Nonce verification failed');
+    }
+    
+    // Remove the cart item
+    $result = WC()->cart->remove_cart_item($cart_item_key);
+    
+    if ($result) {
+        wp_send_json_success('Item removed');
+    } else {
+        wp_send_json_error('Failed to remove item');
+    }
+}

@@ -49,9 +49,10 @@ if (document.readyState === 'loading') {
     }
 }
 
-// Also try on WooCommerce checkout updates
-if (typeof jQuery !== 'undefined') {
-    jQuery(document).on('updated_checkout', function() {
-        setTimeout(changeStripeText, 100);
-    });
-}
+// Listen to broadcast
+const channel = new BroadcastChannel('cart_updates');
+channel.onmessage = function(event) {
+    if (event.data.action === 'cart_updated') {
+        window.location.reload();
+    }
+};

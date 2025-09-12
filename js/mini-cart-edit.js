@@ -27,6 +27,8 @@ jQuery(function($) {
                         });
                         // Trigger event for other scripts
                         $(document.body).trigger('wc_fragment_refresh');
+                        const channel = new BroadcastChannel('cart_updates');
+                        channel.postMessage({ action: 'cart_updated' });
                     }
                 } else {
                     // Revert input value on error
@@ -49,4 +51,53 @@ jQuery(function($) {
     $(document).on('focus', '.mini-cart-qty', function() {
         $(this).data('old-value', $(this).val());
     });
+});
+
+
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('remove_from_cart_button')) {
+        e.preventDefault();
+        
+        const cartItemKey = e.target.dataset.cartItemKey;
+        // Extract nonce correctly from the URL
+        const urlParams = new URLSearchParams(e.target.search);
+        const nonce = urlParams.get('_wpnonce');
+        
+        // AJAX call to remove item
+        fetch(wc_add_to_cart_params.ajax_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                action: 'cht_remove_cart_item',
+                cart_item_key: cartItemKey,
+                nonce: nonce
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.success) {
+                // Trigger fragment refresh
+                jQuery(document.body).trigger('wc_fragment_refresh');
+                
+                // Broadcast to other tabs
+                const channel = new BroadcastChannel('cart_updates');
+                channel.postMessage({ action: 'cart_updated' });
+                setTimeout(() => channel.close(), 100);
+            } else {
+                jQuery(document.body).trigger('wc_fragment_refresh');
+                
+                // Broadcast to other tabs
+                const channel = new BroadcastChannel('cart_updates');
+                channel.postMessage({ action: 'cart_updated' });
+                setTimeout(() => channel.close(), 100);
+                //console.error('Error removing item:', data.data);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
 });
