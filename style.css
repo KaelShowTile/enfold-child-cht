@@ -551,6 +551,9 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .visualizer-container .container.av-section-cont-open .template-page{padding-bottom: 0; padding: 50px 0 0;}
 .visualizer-container .container.av-section-cont-open #tilesview-frame{height: calc(100vh - 160px);}
 
+.footer-mail-sub-form p.form_element{margin: 0;}
+.footer-mail-sub-form input.button{margin: 0; width: 100%;}
+
 /* cart */
 .wc-block-cart-item__prices del{text-decoration: line-through !important; color: #000;}
 #top #payment #place_order{background: #232f3d; color: #fff;}
