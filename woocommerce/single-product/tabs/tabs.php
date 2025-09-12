@@ -69,7 +69,48 @@ if ($terms && !is_wp_error($terms))
 		<div class="cht-product-tags">
 			<ul>
 
-			<?php if (isset($categories[0]))
+			<?php 
+			
+			$attribute_design = get_the_terms($product_id, 'pa_design');
+
+			if($attribute_design){
+				echo '<li>';
+				echo '<a class="parent-categories-item">Design: </a>';
+				echo '<p>';
+				
+				foreach($attribute_design as $design){
+					echo '<a class="child-categories-item"> ' . $design->name . ' </a>';
+				}
+				echo '</p></li>';
+			}
+			
+			$attribute_package = get_the_terms($product_id, 'pa_packaging');
+
+			if($attribute_package){
+				echo '<li>';
+				echo '<a class="parent-categories-item">Package: </a>';
+				echo '<p>';
+				
+				foreach($attribute_package as $package){
+					echo '<a class="child-categories-item"> ' . $package->name . ' </a>';
+				}
+				echo '</p></li>';
+			}	
+
+			$attribute_tile_variation = get_the_terms($product_id, 'pa_tile-variation');
+
+			if($attribute_tile_variation){
+				echo '<li>';
+				echo '<a class="parent-categories-item">Tile Variation: </a>';
+				echo '<p>';
+				
+				foreach($attribute_tile_variation as $tile_variation){
+					echo '<a class="child-categories-item"> ' . $tile_variation->name . ' </a>';
+				}
+				echo '</p></li>';
+			}	
+			
+			if (isset($categories[0]))
 			{
 				foreach ($categories[0] as $parent_category) 
 				{						
