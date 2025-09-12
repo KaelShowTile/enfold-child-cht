@@ -425,7 +425,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
 /* footer */
 #cht-footer-container{background: #fafafa; position: relative; z-index: 0;}
-#cht-footer-container .flex_column.av_one_fifth{margin-left: 4%;}
+#cht-footer-container .flex_column.av_one_fifth{margin-left: 5%;}
 #cht-footer-container .flex_column.av_one_fifth.first{margin-left: 0;}
 #cht-footer-container .flex_column.footer-last-col{width: 22.2%; padding-right: 20px;}
 #cht-footer-container .cht-footer-class li{list-style: none; color: #232f3d;}
@@ -433,13 +433,19 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #cht-footer-container .cht-footer-class strong{color: #232f3d;}
 #cht-footer-container .cht-footer-class a:hover{color: #232f3d;}
 #cht-footer-container .eway-logo{max-width: 180px; margin: 20px auto auto auto;}
+
 .footer-mail-sub-form{padding-left: 55px;}
+.footer-mail-sub-form form{margin-bottom: 0;}
+#top .footer-mail-sub-form .first_form .is_email{padding: 9px 13px; text-align: center;}
+.footer-mail-sub-form form fieldset{margin-bottom: 5px;}
+.footer-mail-sub-form p.form_element{margin: 0; font-size: 0.8rem;}
+.footer-mail-sub-form input.button{margin: 0; width: 100%;}
 
 #cht-footer-container .footer-payment-icons{width: 100%; display: inline-block; padding-left: 58px;}
 #cht-footer-container .footer-payment-icons li{list-style: none; margin: auto 10px auto 0; float: left;}
 #cht-footer-container .footer-payment-icons li img{width: 32px;}
 #cht-footer-container .footer-logo{max-width: 80%; padding-left: 20px; margin-bottom: -5px;}
-#cht-footer-container p.footer-copyright{padding-left: 60px; font-size: 0.75rem;}
+#cht-footer-container p.footer-copyright{font-size: 0.75rem; text-align: center; margin-bottom: 0;}
 
 
 /* elements */
@@ -556,9 +562,6 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .visualizer-container .container.av-section-cont-open .avia_codeblock .container{margin: auto 0; max-width: 100%; padding: 0;}
 .visualizer-container .container.av-section-cont-open .template-page{padding-bottom: 0; padding: 50px 0 0;}
 .visualizer-container .container.av-section-cont-open #tilesview-frame{height: calc(100vh - 160px);}
-
-.footer-mail-sub-form p.form_element{margin: 0;}
-.footer-mail-sub-form input.button{margin: 0; width: 100%;}
 
 /* cart */
 .wc-block-cart-item__prices del{text-decoration: line-through !important; color: #000;}
