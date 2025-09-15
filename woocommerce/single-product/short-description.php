@@ -205,7 +205,28 @@ global $post;
 				        	echo'</li>';
 						}
 					}
-				} ?>
+				} 
+				
+				$product = wc_get_product($get_product_id);
+				$weight = $product->get_weight();
+
+				if($weight){
+					$step_value = get_product_qty_data($get_product_id);
+					$product_suffix = get_product_qty_suffix($get_product_id);
+
+					echo '<li><a class="parent-categories-item">Weight: </a>';
+					
+					if($product_suffix == "m2"){
+						echo'<p><a>' . round(($weight/$step_value),2) . 'kg/m<sup>2</sup></a></p>';
+					}else{
+						echo'<p><a>' . $weight . 'kg/' . $product_suffix . '</a></p>';;
+					}
+
+					echo '</li>';
+				}
+				
+
+				?>
 			</ul>
 		</div>
 
