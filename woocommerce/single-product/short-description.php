@@ -217,7 +217,7 @@ global $post;
 					echo '<li><a class="parent-categories-item">Weight: </a>';
 					
 					if($product_suffix == "m2"){
-						echo'<p><a>' . round(($weight/$step_value),2) . 'kg/m<sup>2</sup></a></p>';
+						echo'<p><a>' . $weight . 'kg/box</a></p>';
 					}else{
 						echo'<p><a>' . $weight . 'kg/' . $product_suffix . '</a></p>';;
 					}
