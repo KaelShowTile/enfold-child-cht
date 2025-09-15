@@ -58,7 +58,7 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 	if($sticker_url)
 	{
 		echo '<span class="product-sticker">';
-		echo '<img src=' . $sticker_url . '>';
+		echo '<img src=' . $sticker_url . ' alt="cheapestile-current-promotion">';
 		echo '</span>';
 	}
 

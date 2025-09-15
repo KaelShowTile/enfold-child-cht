@@ -1091,11 +1091,14 @@ ul.woocommerce-error{background-color: #f8f8f8;}
     #cat-list-container .flex_column.av_one_fifth{width: 96%;}
     #cht-footer-container .flex_column.av_one_fifth{margin: 0 5% 15px;}
     #cht-footer-container .flex_column.av_one_fifth.footer-last-col{margin: 0 5% 15px;}
-    #cht-footer-container .footer-mail-sub-form{width: 80%;}
+    #cht-footer-container .footer-mail-sub-form{width: 80%; padding-left: 0;}
     #cht-footer-container .flex_column.av_one_fourth{ width: 100%; text-align: center;}
-    #cht-footer-container .flex_column.av_one_fourth .cht-footer-class{padding: 0; padding: 0; margin-left: 0;}
+    #cht-footer-container .cht-footer-class{padding: 0; margin-left: 0;}
     #cht-footer-container .cht-footer-class li{margin-left: 0; padding: 0;}
     #cht-footer-container .cht-footer-class a{font-size: 0.85rem; line-height: 1;}
+    #cht-footer-container .footer-payment-icons{padding-left: 0;}
+    #cht-footer-container .footer-payment-icons li{margin: auto 5px;}
+    #cht-footer-container .footer-logo{padding-left: 0;}
 
     #cht-section-title h2{font-size: 1.5rem;}
     #cht-contact-container h2{font-size: 1.5rem;}
@@ -1127,7 +1130,6 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 {
     .header-icons-container .header-icons-list{margin: 18px 20px 0 0;}
     .header-icons-container .header-icons-list #cht-member{display: none;}
-
 }
 
 @media only screen and (max-width: 360px) 
