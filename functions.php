@@ -994,3 +994,13 @@ function change_attachment_image_attributes($attr, $attachment) {
     }
     return $attr;
 }
+
+
+add_filter( 'woocommerce_cart_shipping_method_full_label', 'change_free_shipping_label_to_empty', 10, 2 );
+function change_free_shipping_label_to_empty( $label, $method ) {
+    if ( $method->cost == 0 ) {
+        // Remove the shipping cost part (including "Free")
+        $label = preg_replace( '/:\s*.*$/','', $label );
+    }
+    return $label;
+}

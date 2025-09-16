@@ -426,7 +426,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .glint-load-more-container .button.glint-load-more{padding: 15px 60px; margin: auto; background: #232f3d; float: none;}
 
 /* footer */
-#cht-footer-container{background: #fafafa; position: relative; z-index: 0;}
+#cht-footer-container{background: #efefef; position: relative; z-index: 0;}
 #cht-footer-container .flex_column.av_one_fifth{margin-left: 5%;}
 #cht-footer-container .flex_column.av_one_fifth.first{margin-left: 0;}
 #cht-footer-container .flex_column.footer-last-col{width: 19.2%; padding-right: 20px;}
