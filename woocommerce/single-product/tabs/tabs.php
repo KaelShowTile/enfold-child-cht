@@ -59,6 +59,10 @@ if ($terms && !is_wp_error($terms))
 	<li class="nav-item" role="presentation">
 		<button class="nav-link" id="cht-calculator" data-bs-toggle="tab" data-bs-target="#cht-calculator-panel" type="button" role="tab" aria-controls="cht-calculator-panel" aria-selected="false">Tile Calculator</button>
 	</li>
+
+	<li class="nav-item" role="presentation">
+		<button class="nav-link" id="cht-maintenance" data-bs-toggle="tab" data-bs-target="#cht-maintenance-panel" type="button" role="tab" aria-controls="cht-maintenance-panel" aria-selected="false">Maintenance Guide</button>
+	</li>
 </ul>
 
 <div class="tab-content" id="cht-single-product-content">
@@ -210,7 +214,7 @@ if ($terms && !is_wp_error($terms))
 		?>
 	</div>
 
-	<div class="tab-pane fade" id="cht-calculator-panel" role="tabpanel" aria-labelledby="cht-calculator-return">
+	<div class="tab-pane fade" id="cht-calculator-panel" role="tabpanel" aria-labelledby="cht-calculator">
 		<?php 
 			$return_page_id = 76208; 
 			$page = get_post($return_page_id);
@@ -220,6 +224,52 @@ if ($terms && !is_wp_error($terms))
 			    echo apply_filters('the_content', $page->post_content);
 			} 
 		?>
+	</div>
+
+	<div class="tab-pane fade" id="cht-maintenance-panel" role="tabpanel" aria-labelledby="cht-maintenance">
+
+		<div class="cht-product-maintenance">
+
+			<?php 
+
+			if (isset($categories[0]))
+			{
+				foreach ($categories[0] as $parent_category) 
+				{						
+					$parent_category_name = $parent_category->name;
+					$parent_category_id = $parent_category->term_id;
+
+					if ($parent_category_name == "Material") 
+					{
+		        		error_log('hasmaterial');
+						if (isset($categories[$parent_category_id])) 
+		        		{
+		        			foreach ($categories[$parent_category_id] as $child_category)
+		        			{ 
+
+								error_log('material id: ' . $child_category->term_id);
+
+								$maintenance_id = get_field('has_installation', 'product_cat_' . $child_category->term_id);
+								if($maintenance_id){
+									$page = get_post($maintenance_id);
+
+									error_log('has installation: ' . $maintenance_id);
+
+									if ($page) 
+									{
+										echo apply_filters('the_content', $page->post_content);
+									} 
+								}	
+		        			}
+		        		} 
+					}
+				}
+			} 
+
+			?>
+
+			</ul>
+		</div>
 	</div>
 
 </div>
