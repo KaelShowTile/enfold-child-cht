@@ -806,6 +806,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
     .cht-footer-class{padding-left: 0;}
     .footer-mail-sub-form, #cht-footer-container .footer-payment-icons{padding-left: 20px;}
+    .wc-block-components-sidebar.wc-block-checkout__sidebar.wp-block-woocommerce-checkout-totals-block.is-sticky{display: none;}
 }
 
 @media only screen and (max-width: 767px) 
