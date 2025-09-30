@@ -241,19 +241,13 @@ if ($terms && !is_wp_error($terms))
 
 					if ($parent_category_name == "Material") 
 					{
-		        		error_log('hasmaterial');
 						if (isset($categories[$parent_category_id])) 
 		        		{
 		        			foreach ($categories[$parent_category_id] as $child_category)
 		        			{ 
-
-								error_log('material id: ' . $child_category->term_id);
-
 								$maintenance_id = get_field('has_installation', 'product_cat_' . $child_category->term_id);
 								if($maintenance_id){
 									$page = get_post($maintenance_id);
-
-									error_log('has installation: ' . $maintenance_id);
 
 									if ($page) 
 									{

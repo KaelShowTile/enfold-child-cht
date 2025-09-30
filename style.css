@@ -572,7 +572,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .widget_shopping_cart_content .quantity-wrapper{display: block; margin: 5px 0 0 45px;}
 .widget_shopping_cart_content .updating { opacity: 0.7; position: relative;}
 .widget_shopping_cart_content .updating:after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.5) url(../wp-content/themes/enfold child/imgs/loading-circle.gif) center center no-repeat;}
-#top .widget_shopping_cart_content .quantity input.qty{height: 24px; width: 24px; line-height: 24px;}
+#top .widget_shopping_cart_content .quantity input.qty{height: 24px; width: 36px; line-height: 24px;}
 
 /* checkout - block */
 #top .wc-block-components-totals-coupon__form{display: block;}

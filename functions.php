@@ -81,6 +81,34 @@ function noindex_pages_with_unwanted_params( $robots )
     return $robots;
 }
 
+// Add AJAX endpoint for nonce refresh
+add_action('wp_ajax_refresh_nonce', 'refresh_nonce_callback');
+add_action('wp_ajax_nopriv_refresh_nonce', 'refresh_nonce_callback');
+
+function refresh_nonce_callback() {
+    // You can specify the action for the nonce, or use a default
+    $action = isset($_POST['action_name']) ? sanitize_text_field($_POST['action_name']) : 'wp_rest';
+    
+    $response = array(
+        'nonce' => wp_create_nonce($action),
+        'success' => true
+    );
+    
+    wp_send_json($response);
+}
+
+// Enqueue our refresh script
+add_action('wp_enqueue_scripts', 'enqueue_nonce_refresh_script');
+function enqueue_nonce_refresh_script() {
+    wp_enqueue_script('nonce-refresh', get_stylesheet_directory_uri() . '/js/nonce-refresh.js', array('jquery'), '1.0', true);
+    
+    // Pass AJAX URL to script
+    wp_localize_script('nonce-refresh', 'ajax_object', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('refresh_nonce_action')
+    ));
+}
+
 //Add Bootstrap
 function add_bootstrap() 
 {
@@ -223,7 +251,6 @@ function woocommerce_ajax_add_to_cart() {
 
     //count the action
     $add_to_cart_count = (int)get_field("add_to_cart_count", 73852);
-    error_log("Add To Cart Count: " . $add_to_cart_count);
     $add_to_cart_count++;
     update_field("add_to_cart_count", $add_to_cart_count, 73852);
 
@@ -257,10 +284,7 @@ function count_add_to_cart_ajax_calls($cart_item_key, $product_id, $quantity, $v
     if (wp_doing_ajax() && isset($_REQUEST['action']) && $_REQUEST['action'] === 'woocommerce_add_to_cart') {
         $post_id = 21; // cart page ID
         $current_count = (int) get_field('add_to_cart_count', $post_id);
-        error_log("Count before: " . $current_count);
         $new_count = $current_count + 1;
-
-        error_log("Update Count: " . $new_count);
         
         update_field('add_to_cart_count', $new_count, $post_id);
     }
@@ -519,7 +543,6 @@ function handle_load_more_products() {
     }
     
     // Run query
-    error_log( print_r( $args, true ) );
     $products = new WP_Query($args);
     
     // Start output buffer
@@ -995,7 +1018,7 @@ function change_attachment_image_attributes($attr, $attachment) {
     return $attr;
 }
 
-
+//remove "Free" label when no shipping method available
 add_filter( 'woocommerce_cart_shipping_method_full_label', 'change_free_shipping_label_to_empty', 10, 2 );
 function change_free_shipping_label_to_empty( $label, $method ) {
     if ( $method->cost == 0 ) {
@@ -1004,3 +1027,5 @@ function change_free_shipping_label_to_empty( $label, $method ) {
     }
     return $label;
 }
+
+?>
