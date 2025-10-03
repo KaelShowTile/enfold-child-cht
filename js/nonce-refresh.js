@@ -20,7 +20,6 @@
         },
         
         refreshAllNonces: function() {
-            console.log('Refreshing nonces...');
             
             // Find all script tags that might contain nonces
             $('script').each((index, element) => {
@@ -48,7 +47,6 @@
                 const matches = [...scriptContent.matchAll(pattern)];
                 matches.forEach(match => {
                     hasNonce = true;
-                    console.log('Found nonce pattern:', match[0]);
                 });
             });
             
@@ -84,8 +82,6 @@
             } else {
                 scriptElement.textContent = updatedContent;
             }
-            
-            console.log('Nonces updated in script tag');
         },
         
         requestNewNonce: function() {
@@ -93,20 +89,21 @@
                 $.ajax({
                     url: ajax_object.ajax_url,
                     type: 'POST',
+                    dataType: 'json',
                     data: {
                         action: 'refresh_nonce',
                         nonce: ajax_object.nonce
                     },
                     success: function(response) {
-                        if (response.success && response.data.nonce) {
+                        if (response && response.success && response.data && response.data.nonce) {
                             resolve(response.data.nonce);
                         } else {
-                            console.error('Failed to get new nonce');
+                            console.error('Failed to get new nonce - invalid response structure');
                             resolve(null);
                         }
                     },
-                    error: function() {
-                        console.error('Error requesting new nonce');
+                    error: function(xhr, status, error) {
+                        console.error('Error requesting new nonce:', status, error);
                         resolve(null);
                     }
                 });
