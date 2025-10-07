@@ -80,13 +80,13 @@
 							<ul>
 								<li>Use a little resource of hosting, and a lot of resouce of database, may slow the whole website</li>
 								<li>Slow response</li>
-								<li>Search result is accurate</li>
+								<li>Search result is not accurate</li>
 							</ul>
 						</div>
 
 						<div class="test-search-bar">
 							<h5>XML Search</h5>
-							<span>Generate an XML file on hosting to store necessary information of all products/categories, user search on this file instead of searching database. This file automatically6 updates every day.</span>
+							<span>Generate an XML file on hosting to store necessary information of all products/categories, user search on this file instead of searching database. This file automatically updates every day.</span>
 							<p>PRO:</p>
 							<ul>
 								<li>Only use acceptable resource of hosting, doesn't use database</li>
