@@ -738,7 +738,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 /*testing only, delete later*/
 .test-explaination{width: 100%; display: flex; flex-wrap: wrap; gap: 60px;}
 .test-explaination .test-search-bar{width: calc((100% - 120px) / 3);}
-#top .test-search-bar .woocommerce-ajax-search-container{left: 0; width: 100%; margin-left: 0;}
+#top .test-search-bar .woocommerce-ajax-search-container{left: 0; width: 100%; margin-left: 0; margin-bottom: 20px;}
 .test-explaination h5{font-size: 1.25rem;}
 .test-explaination span{font-size: 0.85rem; line-height: 0.8 !important;}
 .test-explaination p{font-size: 0.85rem; margin: 10px auto 0; font-weight: 700;}
