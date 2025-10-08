@@ -91,8 +91,7 @@
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        action: 'refresh_nonce',
-                        nonce: ajax_object.nonce
+                        action: 'refresh_nonce'
                     },
                     success: function(response) {
                         if (response && response.success && response.data && response.data.nonce) {
