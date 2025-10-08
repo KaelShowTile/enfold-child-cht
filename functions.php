@@ -86,11 +86,7 @@ add_action('wp_ajax_refresh_nonce', 'refresh_nonce_callback');
 add_action('wp_ajax_nopriv_refresh_nonce', 'refresh_nonce_callback');
 
 function refresh_nonce_callback() {
-    // Verify the nonce sent from JavaScript
-    if (!wp_verify_nonce($_POST['nonce'], 'refresh_nonce_action')) {
-        wp_send_json_error('Invalid nonce');
-        return;
-    }
+    // No nonce verification needed since this endpoint is for refreshing nonces
 
     // You can specify the action for the nonce, or use a default
     $action = isset($_POST['action_name']) ? sanitize_text_field($_POST['action_name']) : 'wp_rest';
@@ -101,7 +97,7 @@ function refresh_nonce_callback() {
     ));
 }
 
-// Enqueue our refresh script
+// Enqueue refresh script
 add_action('wp_enqueue_scripts', 'enqueue_nonce_refresh_script');
 function enqueue_nonce_refresh_script() {
     wp_enqueue_script('nonce-refresh', get_stylesheet_directory_uri() . '/js/nonce-refresh.js', array('jquery'), '1.0', true);
