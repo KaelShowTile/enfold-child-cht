@@ -32,10 +32,14 @@ global $post;
 	}
 
 	$get_product_id = $post->ID;
-	$current_url = get_permalink($get_product_id);
+	$product = wc_get_product($get_product_id);
 
+	$current_url = get_permalink($get_product_id);
 	$terms = get_the_terms($get_product_id, 'product_cat');
 	$categories = array();
+
+	
+	$weight = $product->get_weight();
 
 	if ($terms && !is_wp_error($terms)) 
 	{		
@@ -207,9 +211,6 @@ global $post;
 					}
 				} 
 				
-				$product = wc_get_product($get_product_id);
-				$weight = $product->get_weight();
-
 				if($weight){
 					$step_value = get_product_qty_data($get_product_id);
 					$product_suffix = get_product_qty_suffix($get_product_id);
@@ -225,7 +226,6 @@ global $post;
 					echo '</li>';
 				}
 				
-
 				?>
 			</ul>
 		</div>
