@@ -182,8 +182,6 @@
 
 	$html_classes = implode( ' ', array_unique( array_filter( $html_classes ) ) );
 
-
-
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="<?php echo $html_classes; ?>">
 <head>

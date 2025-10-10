@@ -29,21 +29,26 @@ $product_id = $product->get_id();
 
 $thumbnail_id = $product->get_image_id();
 $product_thumbnail = "";
-if($thumbnail_id)
-{
+
+if($thumbnail_id){
 	$thumbnail_array = wp_get_attachment_image_src($thumbnail_id, 'woocommerce_thumbnail');
-	if ($thumbnail_array)
-	{
+	if ($thumbnail_array){
         $product_thumbnail = $thumbnail_array[0];
     } 
-	else 
-	{
+	else{
         $product_thumbnail = "/wp-content/uploads/woocommerce-placeholder.png";
     }
 }
-else
-{
+else{
 	$product_thumbnail = "/wp-content/uploads/woocommerce-placeholder.png";
+}
+
+//check backorder
+$backorder_status = false;
+if ( method_exists( $product, 'get_stock_status' ) ) {
+	if($product->get_stock_status() === 'onbackorder'){
+		$backorder_status = true;
+	}
 }
 
 $product_name = $product->get_name();
@@ -78,28 +83,31 @@ if ( $product->is_in_stock() ) : ?>
 
 				<div class="m2-quantity">
 					<input type="number" id="square-meter-needed" min="0" max="999" step="1" placeholder="0" />
-					<?php if($product_suffix)
-					{
+					<?php if($product_suffix){
 						if($product_suffix == "m2"){
 							echo '<p id="quantity-suffix-box">box</p>';
 						}else{
 							echo '<p>' . $product_suffix . '</p>';
 						}
 					}?>
-					
 				</div>
 
-				<?php if($product_suffix == "m2")
-				{
+				<?php if($product_suffix == "m2"){
 					echo '<p class="boxes-explaination"> (' . $step_value .' m2 per box)</p>'; 
 				} ?>
 
 			</div>
 
-			<div class="tile-box-total-price-container">
-				<p id="output-total-price-label">Total Price:</p> 
-				<h3 id="output-total-price">0</h3>
-			</div>
+			<?php if ( $backorder_status == false ) : ?>
+				<div class="tile-box-total-price-container">
+					<p id="output-total-price-label">Total Price:</p> 
+					<h3 id="output-total-price">0</h3>
+				</div>
+			<?php else: ?>
+				<div class="tile-box-total-price-container backorder-product">
+					<h3>Please contact us for backorder</h5>
+				</div>
+			<?php endif; ?>
 
 		</div>
 
