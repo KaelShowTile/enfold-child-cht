@@ -371,7 +371,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .cht-product-description-container .price{line-height: 1.5rem; display: inline-block; margin-bottom: 0;}
 .cht-product-description-container .box-price-container p.sales-square-price{display: inline-block; margin: auto 10px auto 5px;}
 
-.tile-box-total-price-container.backorder-product{padding-top: 20px;}
+.tile-box-total-price-container.backorder-product{padding-top: 10px;}
 .tile-box-total-price-container.backorder-product h3{font-size: 1.25rem; text-transform: initial; color: #ff0029;}
 
 .cht-product-tags ul{padding: 0; margin: 20px 0 10px 0;}
