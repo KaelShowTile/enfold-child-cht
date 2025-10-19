@@ -45,8 +45,7 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 	}
 	
 	//on sale sticker
-	if ( $product->is_on_sale() ) 
-	{
+	if ($product->is_on_sale()){
 	    $regular_price = $product->get_regular_price();
         $sale_price = $product->get_sale_price();
         $percentage = round((($regular_price - $sale_price) / $regular_price) * 100);
@@ -55,13 +54,15 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 
 	//other sticker
 	$sticker_url = get_field('product_icon_image', $product_id);
-	if($sticker_url)
-	{
-		echo '<span class="product-sticker">';
+	if($sticker_url){
+		if ($product->is_on_sale()) {
+			echo '<span class="product-sticker">';
+		}else{
+			echo '<span class="product-sticker no-sales">';
+		}
 		echo '<img src=' . $sticker_url . ' alt="cheapestile-current-promotion">';
 		echo '</span>';
 	}
-
 
 	/**
 	 * Hook: woocommerce_before_shop_loop_item_title.
@@ -79,29 +80,24 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 
 	echo '<h2 class="woocommerce-loop-product__title">' . get_the_title() . '</h2>';
 
-	if ($product->is_type('simple')) 
-	{
+	if ($product->is_type('simple')){
 		$regular_price = $product->get_regular_price();
 
-		if($product_suffix == "m2")
-		{
+		if($product_suffix == "m2"){
 			if($regular_price > 0 && $step_value > 0){
 				$regular_price = round(($regular_price/$step_value), 2);
 			}
 			$product_display_suffix = "m<sup>2</sup>";
 		}
 
-		if ( $product->is_on_sale() ) 
-		{
+		if ($product->is_on_sale()){
 			$sale_price = $product->get_sale_price(); 
 			
-			if($product_suffix == "m2")
-			{
+			if($product_suffix == "m2"){
 				$sale_price = round(($sale_price/$step_value), 2);
 			}
 
 			echo '<span class="price"><del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $regular_price . '</bdi></span></del> <span class="screen-reader-text">Original price was: $' . $regular_price . '.</span>';
-			
 			echo '<ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $sale_price . '/' . $product_display_suffix . '</bdi></span></ins><span class="screen-reader-text">Current price is: ' . $sale_price . '.</span></span>';
 
 		}else{
