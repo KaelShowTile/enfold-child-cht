@@ -43,7 +43,7 @@
 
 					<div class="test-explaination">
 
-						<div class="test-search-bar"><?php echo do_shortcode('[gto_ajax_search]'); ?></div>
+						<div class="test-search-bar"><?php echo do_shortcode('[gto_xml_local_ajax_search]'); ?></div>
 
 						<div class="test-search-bar"><?php echo do_shortcode('[gto_db_ajax_search]'); ?></div>
 
@@ -54,7 +54,7 @@
 					<div class="test-explaination">
 
 						<div class="test-search-bar">
-							<h5>Local Storage Search</h5>
+							<h5>Local Storage Search(XML version)</h5>
 							<span>Download all necessary information of products and categories to user's device and save it for 7 days, when user search the keywords, the search auctally happen on their device instead of using our server resouce. After 7 days, if customer open our website again, the program will re-download the information.</span>
 							<p>PRO:</p>
 							<ul>

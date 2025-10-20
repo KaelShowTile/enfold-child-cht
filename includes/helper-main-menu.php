@@ -233,7 +233,7 @@ if( $headerS['header_topbar'] == true )
 						$output .= avia_logo( AVIA_BASE_URL . 'images/layout/logo.png', $addition, 'span', true );
 
 						if ( !is_page_template( 'search-test.php' ) ){
-							$output .= do_shortcode('[gto_ajax_search]');
+							$output .= do_shortcode('[gto_xml_local_ajax_search]');
 						}
 
 						$output .= "<div class='header-contact-container'>";
