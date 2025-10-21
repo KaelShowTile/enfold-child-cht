@@ -50,9 +50,20 @@ if (document.readyState === 'loading') {
 }
 
 // Listen to broadcast
+let reloadTimeout;
 const channel = new BroadcastChannel('cart_updates');
+
 channel.onmessage = function(event) {
     if (event.data.action === 'cart_updated') {
-        window.location.reload();
+        console.log('Cart updated broadcast received');
+        
+        // Clear any pending reload
+        if (reloadTimeout) clearTimeout(reloadTimeout);
+        
+        // Wait a moment to ensure server is ready, then reload
+        reloadTimeout = setTimeout(() => {
+            // Use cache-busting reload
+            window.location.reload(true);
+        }, 1000);
     }
 };

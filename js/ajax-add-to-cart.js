@@ -66,8 +66,7 @@ jQuery(document).ready(function($) {
                 $(document.body).trigger('wc_fragment_refresh');
 
                 //Boardcast the update so checkout page knows
-                const channel = new BroadcastChannel('cart_updates');
-                channel.postMessage({ action: 'cart_updated' });
+                broadcastCartUpdate();
                 
                 // Show sidebar and switch tab
                 setTimeout(function() {
@@ -98,8 +97,7 @@ jQuery(document).ready(function($) {
 
     window.handleAddSampleToCart = function() {
         $(document.body).trigger('wc_fragment_refresh');
-        const channel = new BroadcastChannel('cart_updates');
-        channel.postMessage({ action: 'cart_updated' });
+        broadcastCartUpdate();
         const $sidebar = $('#cht-cart-sidebar');
 
         setTimeout(function(){
@@ -107,6 +105,19 @@ jQuery(document).ready(function($) {
         }, 500)
         
     };
+
+    function broadcastCartUpdate() {
+        // Wait a bit to ensure server processed the cart update
+        setTimeout(() => {
+            const channel = new BroadcastChannel('cart_updates');
+            channel.postMessage({ 
+                action: 'cart_updated',
+                timestamp: Date.now()
+            });
+            setTimeout(() => channel.close(), 1000);
+        }, 500); // Wait 500ms before broadcasting
+    }
+
     
     
 });

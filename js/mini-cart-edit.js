@@ -27,8 +27,7 @@ jQuery(function($) {
                         });
                         // Trigger event for other scripts
                         $(document.body).trigger('wc_fragment_refresh');
-                        const channel = new BroadcastChannel('cart_updates');
-                        channel.postMessage({ action: 'cart_updated' });
+                        broadcastCartUpdate();
                     }
                 } else {
                     // Revert input value on error
@@ -83,21 +82,28 @@ document.addEventListener('click', function(e) {
                 jQuery(document.body).trigger('wc_fragment_refresh');
                 
                 // Broadcast to other tabs
-                const channel = new BroadcastChannel('cart_updates');
-                channel.postMessage({ action: 'cart_updated' });
-                setTimeout(() => channel.close(), 100);
+                broadcastCartUpdate();
             } else {
                 jQuery(document.body).trigger('wc_fragment_refresh');
                 
                 // Broadcast to other tabs
-                const channel = new BroadcastChannel('cart_updates');
-                channel.postMessage({ action: 'cart_updated' });
-                setTimeout(() => channel.close(), 100);
-                //console.error('Error removing item:', data.data);
+                broadcastCartUpdate();
             }
         })
         .catch(error => {
             console.error('Error:', error);
         });
+    }
+
+    function broadcastCartUpdate() {
+        // Wait a bit to ensure server processed the cart update
+        setTimeout(() => {
+            const channel = new BroadcastChannel('cart_updates');
+            channel.postMessage({ 
+                action: 'cart_updated',
+                timestamp: Date.now()
+            });
+            setTimeout(() => channel.close(), 1000);
+        }, 500); // Wait 500ms before broadcasting
     }
 });
