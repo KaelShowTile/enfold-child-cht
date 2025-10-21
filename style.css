@@ -291,6 +291,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #top .homepage-icon-list-container .iconbox_icon.avia-svg-icon{margin-right: 15px; height: 65px; width: 65px; line-height: 65px; font-size: 65px;}
 
 /* product category */
+.term-description.all-tiles{margin-bottom: 40px;}
 #top div .product_on_sale .inner_product_header{padding-right: 15px;}
 
 .archive.tax-product_cat .template-shop{padding-top: 10px;}

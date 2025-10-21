@@ -54,8 +54,10 @@ if ( woocommerce_product_loop() ) {
 		$base_category = $current_category->slug; // Get slug
 
 		echo'<span class="hide-this-area" id="find-current-category">' . $base_category . '</span>';
+	}else{
+		echo '<div class="term-description all-tiles"><h1>All Tiles</h1></div>';
 	}
-	
+
 	?>
 	
 
