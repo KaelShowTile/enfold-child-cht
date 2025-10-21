@@ -86,9 +86,7 @@ add_action('wp_ajax_refresh_nonce', 'refresh_nonce_callback');
 add_action('wp_ajax_nopriv_refresh_nonce', 'refresh_nonce_callback');
 
 function refresh_nonce_callback() {
-    // No nonce verification needed since this endpoint is for refreshing nonces
 
-    // You can specify the action for the nonce, or use a default
     $action = isset($_POST['action_name']) ? sanitize_text_field($_POST['action_name']) : 'wp_rest';
 
     // Send the new nonce in the data
