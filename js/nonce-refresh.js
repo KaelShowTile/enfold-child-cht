@@ -20,17 +20,34 @@
         },
         
         refreshAllNonces: function() {
-            
-            // Find all script tags that might contain nonces
+            // Find all script tags that contain nonces
+            const scriptsWithNonces = [];
+
             $('script').each((index, element) => {
                 const scriptContent = $(element).html() || element.textContent || '';
-                
-                // Look for common nonce patterns in script content
-                this.findAndReplaceNonces(scriptContent, element);
+
+                // Check if this script contains nonce patterns
+                if (this.hasNoncePatterns(scriptContent)) {
+                    scriptsWithNonces.push({
+                        element: element,
+                        content: scriptContent
+                    });
+                }
             });
+
+            // If we found scripts with nonces, make one request and update all
+            if (scriptsWithNonces.length > 0) {
+                this.requestNewNonce().then(newNonce => {
+                    if (newNonce) {
+                        scriptsWithNonces.forEach(script => {
+                            this.replaceNoncesInScript(script.element, script.content, newNonce);
+                        });
+                    }
+                });
+            }
         },
-        
-        findAndReplaceNonces: function(scriptContent, scriptElement) {
+
+        hasNoncePatterns: function(scriptContent) {
             // Common nonce patterns in WordPress
             const noncePatterns = [
                 /nonce['"]?:\s*['"]([a-f0-9]+)['"]/gi,
@@ -39,25 +56,8 @@
                 /wp_rest['"]?:\s*['"]([a-f0-9]+)['"]/gi,
                 /security['"]?:\s*['"]([a-f0-9]+)['"]/gi
             ];
-            
-            let updatedContent = scriptContent;
-            let hasNonce = false;
-            
-            noncePatterns.forEach(pattern => {
-                const matches = [...scriptContent.matchAll(pattern)];
-                matches.forEach(match => {
-                    hasNonce = true;
-                });
-            });
-            
-            // If we found nonce patterns, request new nonces and replace them
-            if (hasNonce) {
-                this.requestNewNonce().then(newNonce => {
-                    if (newNonce) {
-                        this.replaceNoncesInScript(scriptElement, scriptContent, newNonce);
-                    }
-                });
-            }
+
+            return noncePatterns.some(pattern => pattern.test(scriptContent));
         },
         
         replaceNoncesInScript: function(scriptElement, originalContent, newNonce) {

@@ -417,13 +417,6 @@ add_action('init', function ()
     }
 });
 
-//test
-add_action('wp_enqueue_scripts', function() {
-    if (class_exists('WooCommerce_AJAX_Search')) {
-        (new WooCommerce_AJAX_Search())->enqueue_scripts();
-    }
-});
-
 //overwrite tab section js
 function enfold_child_override_scripts() 
 {
@@ -1027,5 +1020,7 @@ function change_free_shipping_label_to_empty( $label, $method ) {
     }
     return $label;
 }
+
+
 
 ?>
