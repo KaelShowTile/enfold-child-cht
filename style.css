@@ -742,7 +742,9 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .swiper .swiper-button-next:after, .swiper .swiper-button-prev:after{line-height: 50px; font-size: 18px; font-weight: 900; color: #232f3d;}
 .swiper .swiper-button-next:hover, .swiper .swiper-button-prev:hover{box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1); background: #ddd;}
 
-.swiper.ration-4-9.below_image .swiper-slide{aspect-ratio: 0.4444;}
+/*for iphone*/
+.swiper.ration-4-9.below_image .swiper-slide{aspect-ratio: 0.4444 !important;}
+.swiper.ration-4-9.below_image .swiper-slide img{aspect-ratio: 1 !important;}
 
 /*testing only, delete later*/
 .test-explaination{width: 100%; display: flex; flex-wrap: wrap; gap: 60px;}
