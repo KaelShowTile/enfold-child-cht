@@ -201,6 +201,13 @@ $product_tile = $product->get_title();
 
 				wc_get_template_part( 'single-product/price' );
 
+				$sticker_url = get_field('product_icon_image', $product_id);
+				if($sticker_url){
+					echo '<span class="product-page-sticker">';
+					echo '<img src=' . $sticker_url . ' alt="cheapestile-current-promotion">';
+					echo '</span>';
+				}
+
 				wc_get_template_part( 'single-product/short-description' );
 
 				if (function_exists('display_linked_product'))

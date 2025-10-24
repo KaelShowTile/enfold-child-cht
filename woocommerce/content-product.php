@@ -43,25 +43,19 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 	if($product_suffix){
 		$product_display_suffix = $product_suffix;
 	}
-	
-	//on sale sticker
-	if ($product->is_on_sale()){
-	    $regular_price = $product->get_regular_price();
-        $sale_price = $product->get_sale_price();
-        $percentage = round((($regular_price - $sale_price) / $regular_price) * 100);
-	    echo '<span class="product-discount-rate">-'. $percentage .'%</span>'; 
-	}
 
 	//other sticker
 	$sticker_url = get_field('product_icon_image', $product_id);
 	if($sticker_url){
-		if ($product->is_on_sale()) {
-			echo '<span class="product-sticker">';
-		}else{
-			echo '<span class="product-sticker no-sales">';
-		}
+		echo '<span class="product-sticker">';
 		echo '<img src=' . $sticker_url . ' alt="cheapestile-current-promotion">';
 		echo '</span>';
+	}else if($product->is_on_sale())
+	{//on sale sticker
+		$regular_price = $product->get_regular_price();
+		$sale_price = $product->get_sale_price();
+		$percentage = round((($regular_price - $sale_price) / $regular_price) * 100);
+		echo '<span class="product-discount-rate">-'. $percentage .'%</span>'; 
 	}
 
 	/**
