@@ -41,22 +41,112 @@
 
 				<main class='content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'post' ) );?>>
 
+					<div id="cht-blog-content-container" class="flex_column av_four_fifth  avia-builder-el-0  el_before_av_one_fifth  avia-builder-el-first  first flex_column_div">
 					<?php
 					/* Run the loop to output the posts.
 					* If you want to overload this in a child theme then include a file
 					* called loop-index.php and that will be used instead.
-					*
 					*/
 					get_template_part( 'includes/loop', 'index' );
 
 					$blog_disabled = ( avia_get_option('disable_blog') == 'disable_blog' ) ? true : false;
 
-					if( ! $blog_disabled )
+					/*if( ! $blog_disabled )
 					{
 						//show related posts based on tags if there are any
 						get_template_part( 'includes/related-posts' );
-					}
+					}*/
 					?>
+					</div>
+					
+					<div id="cht-blog-sidebar-container" class="flex_column av_one_fifth  avia-builder-el-1  el_after_av_four_fifth  el_before_av_one_full  flex_column_div">
+						
+						<?php //get related products
+						$related_tile_ids = get_field('blog_related_tiles');
+						
+						if($related_tile_ids){
+
+							echo '<div class="blog-related-tiles">';
+							echo '<h2 class="blog-sidebar-title">Related Tiles</h2>';
+
+							foreach($related_tile_ids as $tile_id){
+								$related_tiles = wc_get_product( $tile_id );
+								$tile_permalink = get_permalink( $tile_id );
+								$product_thumbnail_id = $related_tiles->get_image_id();
+								$product_thumbnail_url = wp_get_attachment_image_url( $product_thumbnail_id, 'woocommerce_thumbnail' );
+								
+								$product_suffix = get_product_qty_suffix($tile_id);
+								$display_product_suffix = "";
+								if($product_suffix){
+									$display_product_suffix = '/' . $product_suffix;
+								}
+								
+								echo '<a href="' . $tile_permalink . '">';
+								echo '<div class="related_tile">';
+								echo '<img src="' . $product_thumbnail_url . '">';
+								echo '<p>' . $related_tiles->get_name() . '</p>';
+								
+								echo '<div class="price">';
+								if($product_suffix != 'm2'){
+									echo '<span>' . $related_tiles->get_price_html() . $display_product_suffix . '</span>';
+								}else{
+									$step_value = round(get_product_qty_data($tile_id), 2);
+									$regular_price = round((($related_tiles->get_regular_price())/$step_value), 2);
+
+									if ($related_tiles->is_on_sale()){
+										$sale_price = round((($related_tiles->get_sale_price())/$step_value), 2);
+										echo '<span><del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $sale_price . '</span></bdi></span></del>';
+										echo '<ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $regular_price . '</bdi></span></ins>' . $display_product_suffix . '</span>';
+									}else{
+										echo '<span><ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $regular_price . '</bdi></span></ins>' . $display_product_suffix . '</span>';	
+									}
+								}
+								echo '</div>';
+								
+								echo '</div>';
+								echo '</a>';
+							}
+							echo '</div>';
+						}
+
+						$category_ids = wp_get_post_categories( get_the_ID() );
+
+						//get related post(post in same category)
+						if($category_ids){
+							echo '<div class="blog-related-article">';
+							echo '<h2 class="blog-sidebar-title">Related Articles</h2>';
+							$args = array(
+								'category__in' => $category_ids,
+								'posts_per_page' => 4,
+								'post__not_in' => array( get_the_ID() ),
+								'post_status' => 'publish'
+							);
+							$related_posts = new WP_Query( $args );
+							if( $related_posts->have_posts() ) {
+								echo '<div class="related-articles">';
+								while( $related_posts->have_posts() ) {
+									$related_posts->the_post();
+									$permalink = get_permalink();
+									$thumbnail = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
+									$title = get_the_title();
+									echo '<a href="' . $permalink . '">';
+									echo '<div class="related_article">';
+									if($thumbnail){
+										echo '<img src="' . $thumbnail . '">';
+									}
+									echo '<p>' . $title . '</p>';
+									echo '</div>';
+									echo '</a>';
+								}
+								echo '</div>';
+								wp_reset_postdata();
+							}
+							echo '</div>';
+						}
+						
+
+						?>
+					</div>
 
 					<div class="blog-author-container">
 						<div class="author-avatar">
@@ -88,4 +178,3 @@
 
 <?php
 		get_footer();
-
