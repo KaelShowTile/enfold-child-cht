@@ -1093,6 +1093,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
     h2.blog-sidebar-title{text-align: center;}
     .related.products .product{margin-bottom: 15px;}
+    #top.single-product .related.products .product{margin-bottom: 15px;}
     #top .related.products .product .woocommerce-loop-product__title{min-height: 90px; font-size: 0.85rem;}
     .responsive .container .blog-author-container{display: inline-block;}
     .blog-author-container .author-avatar{width: 200px; margin: 5px auto 20px;}
