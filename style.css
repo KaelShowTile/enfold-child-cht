@@ -1091,8 +1091,13 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
     .footer-payment-icons{margin: auto; display: inline-block;}
 
+    h2.blog-sidebar-title{text-align: center;}
     .related.products .product{margin-bottom: 15px;}
     #top .related.products .product .woocommerce-loop-product__title{min-height: 90px; font-size: 0.85rem;}
+    .responsive .container .blog-author-container{display: inline-block;}
+    .blog-author-container .author-avatar{width: 200px; margin: 5px auto 20px;}
+    #top.post-template-default.single.single-post .blog-author-container h2{margin-bottom: 0; text-align: center;}
+    .author-description span{display: inline-block; color: #999; text-align: center; width: 100%; margin-bottom: 30px;}
 
     @supports (-webkit-touch-callout: none){
       .image_text-slider .swiper-slide{width: calc(100% - 60px) !important;}
