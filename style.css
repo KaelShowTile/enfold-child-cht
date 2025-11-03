@@ -755,6 +755,28 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .swiper .swiper-button-next:after, .swiper .swiper-button-prev:after{line-height: 50px; font-size: 18px; font-weight: 900; color: #232f3d;}
 .swiper .swiper-button-next:hover, .swiper .swiper-button-prev:hover{box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1); background: #ddd;}
 
+.glint-popup-message.show .glint-popup-content{animation-name: popup-bg; animation-duration: 4s; animation-iteration-count: infinite;}
+.glint-popup-message.show .glint-popup-content h3{animation-name: popup-title; animation-duration: 4s; animation-iteration-count: infinite;}
+.glint-popup-message.show .glint-popup-content a{color: #61cae9;}
+
+/*css animation*/
+@keyframes popup-title {
+    0%   {letter-spacing: 1px;}
+    20%  {letter-spacing: 1px;}
+    50%  {letter-spacing: 5px;}
+    80%  {letter-spacing: 1px;}
+    100% {letter-spacing: 1px;}
+}
+
+@keyframes popup-bg {
+    0%   {padding-bottom: 20px;}
+    20%  {padding-bottom: 20px;}
+    50%  {padding-bottom: 30px;}
+    80%  {padding-bottom: 20px;}
+    100% {padding-bottom: 20px;}
+}
+
+
 /*for iphone*/
 .swiper.ration-4-9.below_image .swiper-slide{width: 200px !important;}
 .swiper.ration-4-9.below_image .swiper-slide img{aspect-ratio: 1 !important;width: 100% !important;}
