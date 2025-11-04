@@ -135,6 +135,8 @@ if ( $product->is_in_stock() ) : ?>
 	
 <?php endif; ?>
 
+	<?php if(cht_check_sample_id($product->get_id())): ?>
+
 	<div class="add-sample-container delivery-option-container v-align-middle">
 			
 		<div class="delivery-option-inner">
@@ -149,6 +151,8 @@ if ( $product->is_in_stock() ) : ?>
 		<?php cht_add_sample_btn(); ?>
 
 	</div>
+
+	<?php endif; ?>
 
 	<div class="add-sample-container delivery-option-container">
 			
