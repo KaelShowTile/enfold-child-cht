@@ -63,7 +63,7 @@ if($check_product_type == 1)
 			echo '<p class="sales-square-price"><span class="woocommerce-Price-currencySymbol">$</span>' . $m2_price_sales . '<span class="box-suffix">/m<sup>2</sup></span></p>';
 
 		}else{
-			echo '<p><span class="woocommerce-Price-currencySymbol">$</span>' . $m2_price . '<span class="box-suffix">/m<sup>2</sup> =</span></p>';
+			echo '<p><span class="woocommerce-Price-currencySymbol">$</span>' . $m2_price . '<span class="box-suffix">/m<sup>2</sup></span></p>';
 		}
 
 		echo '</div>';
