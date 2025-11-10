@@ -54,17 +54,18 @@ if($check_product_type == 1)
 	{
 		$m2_price = round(($box_price/$step_value),2);
 		
+		echo '<p class="' . esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ) . '">' . $product->get_price_html() . '<span class="woocommerce-Price-amount amount">/box = </span></p>';
+
 		if ($product->is_on_sale()) 
 		{
 			$m2_price_sales =  round((($product->get_sale_price())/$step_value),2);
 			echo '<del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $m2_price . '<bdi></span></del>';
-			echo '<p class="sales-square-price"><span class="woocommerce-Price-currencySymbol">$</span>' . $m2_price_sales . '<span class="box-suffix">/m<sup>2</sup> =</span></p>';
+			echo '<p class="sales-square-price"><span class="woocommerce-Price-currencySymbol">$</span>' . $m2_price_sales . '<span class="box-suffix">/m<sup>2</sup></span></p>';
 
 		}else{
 			echo '<p><span class="woocommerce-Price-currencySymbol">$</span>' . $m2_price . '<span class="box-suffix">/m<sup>2</sup> =</span></p>';
 		}
 
-		echo '<p class="' . esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ) . '">' . $product->get_price_html() . '<span class="woocommerce-Price-amount amount">/box</span></p>';
 		echo '</div>';
 
 	}else
