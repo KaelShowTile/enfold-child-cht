@@ -99,6 +99,7 @@ h4, h5, h6{font-size: 1rem; font-weight: 600; letter-spacing: 0.5px; text-transf
 }
 
 #slider-look-like-images-bg{position: absolute; top: 0; opacity: 1 !important;z-index: 0;}
+.slider-look-like-images.slider-animation-one-half{animation: slider-look-effect-one-half 7s linear infinite; z-index: 2;}
 .slider-look-like-images.slider-animation-one-third{animation: slider-look-effect-one-thrid 10s linear infinite; z-index: 2;}
 .slider-look-like-images.slider-animation-two-thrid{animation: slider-look-effect-two-thrid 10s linear infinite; z-index: 1; position: absolute; top: 0;}
 
