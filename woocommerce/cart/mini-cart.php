@@ -131,11 +131,10 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
         ?>
     </ul>
 
-    <!-- Nonce and AJAX URL for JavaScript -->
+    <!-- AJAX URL for JavaScript -->
     <script type="text/javascript">
         window.miniCartParams = {
-            ajax_url: '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>',
-            update_nonce: '<?php echo wp_create_nonce( 'update-mini-cart' ); ?>'
+            ajax_url: '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>'
         };
     </script>
 

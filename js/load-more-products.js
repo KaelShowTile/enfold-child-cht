@@ -30,8 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     action: 'load_more_collection_products',
                     page: nextPage,
                     collection_id: collectionId,
-                    query_args: JSON.stringify(queryArgs),
-                    nonce: collection_ajax_data.nonce
+                    query_args: JSON.stringify(queryArgs)
                 })
             });
             

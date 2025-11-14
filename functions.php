@@ -81,31 +81,7 @@ function noindex_pages_with_unwanted_params( $robots )
     return $robots;
 }
 
-// Add AJAX endpoint for nonce refresh
-add_action('wp_ajax_refresh_nonce', 'refresh_nonce_callback');
-add_action('wp_ajax_nopriv_refresh_nonce', 'refresh_nonce_callback');
 
-function refresh_nonce_callback() {
-
-    $action = isset($_POST['action_name']) ? sanitize_text_field($_POST['action_name']) : 'wp_rest';
-
-    // Send the new nonce in the data
-    wp_send_json_success(array(
-        'nonce' => wp_create_nonce($action)
-    ));
-}
-
-// Enqueue refresh script
-add_action('wp_enqueue_scripts', 'enqueue_nonce_refresh_script');
-function enqueue_nonce_refresh_script() {
-    wp_enqueue_script('nonce-refresh', get_stylesheet_directory_uri() . '/js/nonce-refresh.js', array('jquery'), '1.0', true);
-    
-    // Pass AJAX URL to script
-    wp_localize_script('nonce-refresh', 'ajax_object', array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('refresh_nonce_action')
-    ));
-}
 
 //Add Bootstrap
 function add_bootstrap() 
@@ -153,9 +129,7 @@ function edit_mini_cart_enqueue_scripts() {
 }
 add_action('wp_enqueue_scripts', 'edit_mini_cart_enqueue_scripts');
 
-
-
-//Enqueue to cart js
+//Enqueue cart js
 function enqueue_ajax_add_to_cart_js() {
     wp_enqueue_script('ajax-add-to-cart', get_stylesheet_directory_uri() . '/js/ajax-add-to-cart.js', array('jquery'), '1.0', true);
     wp_localize_script('ajax-add-to-cart', 'wc_add_to_cart_params', array(
@@ -167,18 +141,11 @@ function enqueue_ajax_add_to_cart_js() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_ajax_add_to_cart_js');
 
-
 // Add AJAX handler for mini-cart quantity updates
 add_action('wp_ajax_update_mini_cart_quantity', 'update_mini_cart_quantity');
 add_action('wp_ajax_nopriv_update_mini_cart_quantity', 'update_mini_cart_quantity');
 
 function update_mini_cart_quantity() {
-    // Verify nonce
-    if (!check_ajax_referer('update-mini-cart', 'security', false)) {
-        wp_send_json_error(array('error' => 'Invalid nonce'));
-        wp_die();
-    }
-
     // Validate input
     if (!isset($_POST['cart_item_key']) || !isset($_POST['quantity'])) {
         wp_send_json_error(array('error' => 'Missing parameters'));
@@ -495,12 +462,6 @@ function display_single_product_as_archive($atts) {
 add_action('wp_ajax_load_more_collection_products', 'handle_load_more_products');
 add_action('wp_ajax_nopriv_load_more_collection_products', 'handle_load_more_products');
 function handle_load_more_products() {
-    // Verify nonce first
-    if (!check_ajax_referer('load_more_nonce', 'nonce', false)) {
-        wp_send_json_error(array('message' => 'Nonce verification failed'), 403);
-        wp_die();
-    }
-    
     // Get and sanitize parameters
     $page = isset($_POST['page']) ? absint($_POST['page']) : 1;
     $collection_id = isset($_POST['collection_id']) ? absint($_POST['collection_id']) : 0;
@@ -558,11 +519,10 @@ function handle_load_more_products() {
     wp_die();
 }
 
-// Localize AJAX URL and nonce
+// Localize AJAX URL
 add_action('wp_enqueue_scripts', function() {
     wp_localize_script('jquery', 'wpAjax', array(
-        'ajaxurl' => admin_url('admin-ajax.php'),
-        'security' => wp_create_nonce('load_more_nonce')
+        'ajaxurl' => admin_url('admin-ajax.php')
     ));
 });
 
@@ -585,10 +545,9 @@ function localize_cht_scripts()
         
         wp_localize_script(
             'load-more-products',
-            'collection_ajax_data', 
+            'collection_ajax_data',
             array(
-                'ajaxurl' => admin_url('admin-ajax.php'),
-                'nonce' => wp_create_nonce('load_more_nonce')
+                'ajaxurl' => admin_url('admin-ajax.php')
             )
         );
     }
@@ -963,23 +922,16 @@ function cht_update_cart_fragments($fragments) {
     return $fragments;
 }
 
-
 //remove cart item
 add_action('wp_ajax_cht_remove_cart_item', 'cht_remove_cart_item');
 add_action('wp_ajax_nopriv_cht_remove_cart_item', 'cht_remove_cart_item');
 function cht_remove_cart_item() {
-    if (!isset($_POST['cart_item_key']) || !isset($_POST['nonce'])) {
+    if (!isset($_POST['cart_item_key'])) {
         wp_send_json_error('Invalid request');
     }
-    
+
     $cart_item_key = sanitize_text_field($_POST['cart_item_key']);
-    $nonce = sanitize_text_field($_POST['nonce']);
-    
-    // Verify nonce with the correct action
-    if (!wp_verify_nonce($nonce, 'remove_item_' . $cart_item_key)) {
-        wp_send_json_error('Nonce verification failed');
-    }
-    
+
     // Remove the cart item
     $result = WC()->cart->remove_cart_item($cart_item_key);
     

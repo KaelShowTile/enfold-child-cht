@@ -14,8 +14,7 @@ jQuery(function($) {
             data: {
                 action: 'update_mini_cart_quantity',
                 cart_item_key: cartItemKey,
-                quantity: newQty,
-                security: window.miniCartParams.update_nonce
+                quantity: newQty
             },
             dataType: 'json',
             success: function(response) {
@@ -58,10 +57,7 @@ document.addEventListener('click', function(e) {
         e.preventDefault();
         
         const cartItemKey = e.target.dataset.cartItemKey;
-        // Extract nonce correctly from the URL
-        const urlParams = new URLSearchParams(e.target.search);
-        const nonce = urlParams.get('_wpnonce');
-        
+
         // AJAX call to remove item
         fetch(wc_add_to_cart_params.ajax_url, {
             method: 'POST',
@@ -70,8 +66,7 @@ document.addEventListener('click', function(e) {
             },
             body: new URLSearchParams({
                 action: 'cht_remove_cart_item',
-                cart_item_key: cartItemKey,
-                nonce: nonce
+                cart_item_key: cartItemKey
             })
         })
         .then(response => response.json())
