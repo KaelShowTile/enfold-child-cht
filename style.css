@@ -157,7 +157,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #gto-main-menu .remove-clear{border-width:0 !important;}
 #gto-main-menu .av-layout-tab-inner .container{max-width: 100%; padding: 10px 1% 70px; display: flex; background: #fafafa;}
 #gto-main-menu .av-tab-arrow-container{display: none;}
-#gto-main-menu .av-tab-section-tab-title-container{background: transparent; padding-top: 0; padding-left: 20px;}
+#gto-main-menu .av-tab-section-tab-title-container{background: transparent; padding-top: 20px; padding-left: 20px;}
 #gto-main-menu .av-tab-section-tab-title-container .av-tab-no-icon.av-tab-no-image.av-tab-image-rounded{display: none;}
 #gto-main-menu .av-outer-tab-title{padding: 0;}
 #gto-main-menu .av-section-tab-title{padding: 0; margin-left: 20px;}
