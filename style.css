@@ -217,7 +217,8 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
 /* menu v3*/
 #gto-main-menu .avia-button-wrap{width: 100%;}
-#gto-main-menu .avia_textblock.avia-button-wrap p{margin-bottom: 0;}
+#gto-main-menu .avia_textblock.avia-button-wrap p{margin-bottom: 0; line-height: 1;}
+#gto-main-menu .avia-button-wrap .avia-button.avia-button-fullwidth{width: 100%; margin: 0;}
 #gto-main-menu .avia-button-wrap .avia-button.avia-button-fullwidth img{ float: right; width: 32px; margin-right: -7px;}
 #gto-main-menu .avia-button-wrap .avia-button.avia-button-fullwidth img.round-edge{border-radius: 50%;}
 
