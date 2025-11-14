@@ -215,6 +215,11 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #gto-main-menu #rectangle-icon p{margin: 0;}
 #gto-main-menu .avia-button-wrap.avia-button-center p{margin: 0;}
 
+/* menu v3*/
+#gto-main-menu .avia-button-wrap{width: 100%;}
+#gto-main-menu .avia-button-wrap .avia-button.avia-button-fullwidth img{ float: right; width: 32px; margin-right: -7px;}
+
+
 /* sidebar menu */
 #cht-cart-sidebar { position: fixed; top: 0; right: -360px; width: 350px; height: 100%; padding: 40px 0 10px; background: #fff; box-shadow: -3px 0 15px 3px rgba(0, 0, 0, 0.25); z-index: 99999999999; transition: right 0.3s ease; overflow-y: auto;}
 #cht-cart-sidebar.open-sidebar { right: 0; }
