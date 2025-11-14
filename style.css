@@ -218,6 +218,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 /* menu v3*/
 #gto-main-menu .avia-button-wrap{width: 100%;}
 #gto-main-menu .avia-button-wrap .avia-button.avia-button-fullwidth img{ float: right; width: 32px; margin-right: -7px;}
+#gto-main-menu .avia-button-wrap .avia-button.avia-button-fullwidth img.round-edge{border-radius: 50%;}
 
 
 /* sidebar menu */
