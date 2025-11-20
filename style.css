@@ -1131,7 +1131,8 @@ ul.woocommerce-error{background-color: #f8f8f8;}
     }
 
     /*temprory*/
-    .av-logo-container .logo.avia-standard-logo{max-height: 40px; margin-top: 5px;}
+    .responsive #top .av-logo-container .logo.avia-standard-logo{max-height: 40px;}
+    .responsive #top .av-logo-container .logo.avia-standard-logo img{max-height: 44px;}
 }
 
 /* IOS  */
