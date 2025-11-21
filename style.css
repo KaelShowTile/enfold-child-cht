@@ -686,9 +686,9 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .blog-related-tiles a{display: inline-block; margin-bottom: 15px;}
 .blog-related-tiles .related_tile p{margin-top: 10px; font-size: 0.85rem; line-height: 1.2;}
 
-.related-articles .related_article{display: flex; align-items: center; margin-bottom: 20px;}
-.related-articles .related_article img{width: 60px; margin-right: 10px; border-radius: 5px;}
-.related-articles .related_article p{font-size: 0.85rem; line-height: 1.2; margin-bottom: 0;}
+.related-articles .related_article{display: inline-block; align-items: center; margin-bottom: 20px;}
+.related-articles .related_article img{width: 100%;}
+.related-articles .related_article p{font-size: 0.85rem; line-height: 1.2; margin: 10px auto;}
 
 
 /* SEO Landing Page */
@@ -1131,8 +1131,8 @@ ul.woocommerce-error{background-color: #f8f8f8;}
     }
 
     /*temprory*/
-    .responsive #top .av-logo-container .logo.avia-standard-logo{max-height: 40px; margin: 10px auto 15px;}
-    .responsive #top .av-logo-container .logo.avia-standard-logo img{max-height: 40px;}
+    .responsive #top .av-logo-container .logo.avia-standard-logo{max-height: 44px; margin: 10px auto 15px;}
+    .responsive #top .av-logo-container .logo.avia-standard-logo img{max-height: 44px;}
 }
 
 /* IOS  */

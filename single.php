@@ -127,7 +127,7 @@
 								while( $related_posts->have_posts() ) {
 									$related_posts->the_post();
 									$permalink = get_permalink();
-									$thumbnail = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
+									$thumbnail = get_the_post_thumbnail_url( get_the_ID(), 'woocommerce_thumbnail' );
 									$title = get_the_title();
 									echo '<a href="' . $permalink . '">';
 									echo '<div class="related_article">';
