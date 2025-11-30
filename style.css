@@ -1003,9 +1003,8 @@ ul.woocommerce-error{background-color: #f8f8f8;}
     #cht-footer-container .footer-logo{float: none;width: 60%; margin-top: 20px;}
     #cht-footer-container .footer-payment-icons{width: auto;}
 
-    /*testing only, delete later*/
-    .test-explaination{gap: 0;}
-    .test-explaination .test-search-bar{width: 100%;}
+    /* temp */
+	.glint-notification-content p{font-size: 0.8rem; line-height: 1.2; margin-top: 2px; }
 }
 
 @media only screen and (max-width: 640px) 
