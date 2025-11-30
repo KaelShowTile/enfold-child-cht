@@ -792,7 +792,8 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
 /*temprory*/
 .av-logo-container .logo.avia-standard-logo{max-width: 230px; margin-top: 10px;}
-
+.christmax-notice{font-weight: 400; line-height: 1.3; font-size: 1.25rem; letter-spacing: 0.5px;}
+.christmax-notice b{text-transform: initial; color: #ff0000;}
 
 
 @media only screen and (max-width: 1680px) 
