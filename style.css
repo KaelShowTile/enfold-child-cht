@@ -575,6 +575,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
 .product-slider .swiper-slide a h3{padding: 10px 20px 0; font-size: 1rem; letter-spacing: 0.5px;}
 #top .product-slider .swiper-slide a .price{padding-bottom: 10px; display: inline-block; text-align: center;}
+#top .product-slide .product-sticker img{top: 10px; right: 10px;}
 
 .visualizer-container .container.av-section-cont-open{margin: auto 0; padding: 0; max-width: 100%; height: calc(100vh - 120px) !important;}
 .visualizer-container .container.av-section-cont-open .avia_codeblock .container{margin: auto 0; max-width: 100%; padding: 0;}
