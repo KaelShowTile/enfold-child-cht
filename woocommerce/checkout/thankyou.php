@@ -87,6 +87,7 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php endif; ?>
 
+	<!--
 	<script>
 	  fbq('track', 'Purchase', {
 	    value: <?php echo $order->get_total(); ?>,
@@ -102,6 +103,7 @@ defined( 'ABSPATH' ) || exit;
 	    content_type: 'product'
 	  });
 	</script>
+	-->
 
 
 </div>

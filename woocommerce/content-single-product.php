@@ -35,8 +35,8 @@ $product_tile = $product->get_title();
 
 //load lightbox assets
 ?>
-<!-- meta pixil event code -->
-<script type="text/javascript" >fbq('track', 'ViewContent', {content_ids: ['<?php the_ID(); ?>'], content_type: 'product', });</script>
+<!-- meta pixil event code 
+<script type="text/javascript" >fbq('track', 'ViewContent', {content_ids: ['<?php the_ID(); ?>'], content_type: 'product', });</script>-->
 
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/js/cht-lightbox.js" id="cht-lightbox"></script>
 <link rel="stylesheet" id="lightbox-css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/lightbox.css" type="text/css" media="all">
