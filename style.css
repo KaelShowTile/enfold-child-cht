@@ -299,6 +299,12 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .homepage-icon-list-container svg path{stroke: none;}
 #top .homepage-icon-list-container .iconbox_icon.avia-svg-icon{margin-right: 15px; height: 65px; width: 65px; line-height: 65px; font-size: 65px;}
 
+#top #home-feature-container .feature-right-container{padding: 80px 5% 80px 60px;}
+#top #home-feature-container .feature-left-container{padding: 80px 60px 80px 5%;}
+#top #home-feature-container h2{margin-bottom: 30px; text-transform: capitalize; letter-spacing: 1px;}
+#top #home-feature-container .avia-button-wrap{margin-top: 30px;}
+#top #home-feature-container .avia-button-wrap a{font-size: 1rem; }
+
 /* product category */
 .term-description.all-tiles{margin-bottom: 40px;}
 #top div .product_on_sale .inner_product_header{padding-right: 15px;}
@@ -599,6 +605,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .wp-block-woocommerce-checkout-order-summary-block .wc-block-components-order-summary-item__regular-individual-price{color: #232f3d;}
 .wp-block-woocommerce-checkout-order-summary-block .wc-block-components-order-summary-item__total-price .wc-block-components-product-price__value{color: #232f3d;}
 .wc-block-components-checkout-step__content .mrl-explaination{font-size: 0.75rem; color: #333; margin-bottom: 20px;}
+#top .wp-block-woocommerce-checkout-totals-block .wc-block-components-totals-discount .wc-block-components-totals-item__value{color: #ff0000;}
 
 /* checkout - template */
 #cht-checkout-container label{margin-bottom: 3px;}
