@@ -294,6 +294,8 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #cht-group-img-banner .avia_codeblock_section .banner-blue-label{background: #61cae9; display: inline-block; padding: 1px 8px 2px; color: #fff; font-weight: 600; margin: 0 0 10px -1px;}
 #cht-group-img-banner .avia_codeblock_section:after{content: ">"; color: #232f3d; position: absolute; bottom: 25px; right: 20px; font-size: 2rem;  font-weight: 900;}
 
+#top a.homepage-sale-btn{color: #fff; background: #ff0000; padding: 4px 40px 5px; border-radius: 25px;}
+
 .homepage-icon-list-container .iconbox_content_title{font-size: 1.25rem; color: #fff; margin-bottom: 5px; display: inline-block;}
 .homepage-icon-list-container p{line-height: 1.25;}
 .homepage-icon-list-container svg path{stroke: none;}
