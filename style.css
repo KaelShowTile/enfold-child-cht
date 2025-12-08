@@ -705,7 +705,8 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .av_default_container_wrap .av-section-cont-open #cht-blog-sidebar-container{margin: 0; width: 100%;}
 .av_default_container_wrap .av-section-cont-open #cht-blog-sidebar-container .related-articles, .av_default_container_wrap .av-section-cont-open #cht-blog-sidebar-container .blog-related-tiles{display: flex; flex-wrap: wrap; gap: 20px;}
 .av_default_container_wrap .av-section-cont-open #cht-blog-sidebar-container .related-articles a, .av_default_container_wrap .av-section-cont-open #cht-blog-sidebar-container .blog-related-tiles a{width: calc((100% - 80px) / 5);}
-.av_default_container_wrap .av-section-cont-open #cht-blog-sidebar-container .blog-related-tiles .blog-sidebar-title{width: 100%;}
+.av_default_container_wrap .av-section-cont-open #cht-blog-sidebar-container .blog-related-tiles .blog-sidebar-title{width: 100%; margin-bottom: -10px;}
+.av_default_container_wrap .av-section-cont-open #cht-blog-sidebar-container .blog-related-article .blog-sidebar-title{padding-bottom: 20px;}
 
 /* SEO Landing Page */
 .location-container .container{max-width: 80%;}
