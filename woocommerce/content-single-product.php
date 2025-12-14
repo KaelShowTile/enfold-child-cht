@@ -239,31 +239,50 @@ $product_tile = $product->get_title();
 	
 	$category_ids = $product->get_category_ids();
 	$has_qa = false;
-	$shortcode_string = "[av_toggle_container faq_markup='faq_markup' initial='0' mode='accordion' sort='' styling='' colors='' font_color='' background_color='' border_color='' toggle_icon_color='' colors_current='' font_color_current='' toggle_icon_color_current='' background_current='' background_color_current='' background_gradient_current_direction='vertical' background_gradient_current_color1='#000000' background_gradient_current_color2='#ffffff' background_gradient_current_color3='' hover_colors='' hover_font_color='' hover_background_color='' hover_toggle_icon_color='' size-toggle='' av-desktop-font-size-toggle='' av-medium-font-size-toggle='' av-small-font-size-toggle='' av-mini-font-size-toggle='' size-content='' av-desktop-font-size-content='' av-medium-font-size-content='' av-small-font-size-content='' av-mini-font-size-content='' heading_tag='' heading_class='' alb_description='' id='' custom_class='' template_class='' element_template='' one_element_template='' av_uid='av-md2dbkdv' sc_version='1.0' admin_preview_bg='']";
+	$faq_schema = array();
+	$shortcode_string = "[av_toggle_container initial='0' mode='accordion' sort='' styling='' colors='' font_color='' background_color='' border_color='' toggle_icon_color='' colors_current='' font_color_current='' toggle_icon_color_current='' background_current='' background_color_current='' background_gradient_current_direction='vertical' background_gradient_current_color1='#000000' background_gradient_current_color2='#ffffff' background_gradient_current_color3='' hover_colors='' hover_font_color='' hover_background_color='' hover_toggle_icon_color='' size-toggle='' av-desktop-font-size-toggle='' av-medium-font-size-toggle='' av-small-font-size-toggle='' av-mini-font-size-toggle='' size-content='' av-desktop-font-size-content='' av-medium-font-size-content='' av-small-font-size-content='' av-mini-font-size-content='' heading_tag='' heading_class='' alb_description='' id='' custom_class='' template_class='' element_template='' one_element_template='' av_uid='av-md2dbkdv' sc_version='1.0' admin_preview_bg='']";
 
 	echo '<div class="single-product-qna">';
 	echo '<h2>FAQ</h2>';
-	
+
 	foreach ($category_ids as $cat_id) {
-		$qa_cate = get_field('product_q&a', 'product_cat_' . $cat_id);	
+		$qa_cate = get_field('product_q&a', 'product_cat_' . $cat_id);
 
 		if( $qa_cate ){
 			foreach ($qa_cate as $row){
 				$has_qa = true;
-				$question = esc_html($row['product_qna_question']);
-				$answer = esc_html($row['product_qna_answer']);
+				$question_raw = $row['product_qna_question'];
+				$answer_raw = $row['product_qna_answer'];
+				$question = esc_html($question_raw);
+				$answer = esc_html($answer_raw);
 				$shortcode_string .= "[av_toggle title='" . $question . "' title_open='' tags='' title_pos='' slide_speed='' custom_id='' aria_collapsed='' aria_expanded='' element_template='' one_element_template='' av_uid='' sc_version='1.0' ]" . $answer . "[/av_toggle]";
+				$faq_schema[] = array(
+					'@type' => 'Question',
+					'name' => $question_raw,
+					'acceptedAnswer' => array(
+						'@type' => 'Answer',
+						'text' => $answer_raw
+					)
+				);
 			}
 		}
 	}
 
 	$shortcode_string .= "[/av_toggle_container]";
-	
+
 	if($has_qa == true){
 		echo do_shortcode($shortcode_string);
 	}
 
-	
+	if($has_qa){
+		$schema_data = array(
+			'@context' => 'https://schema.org',
+			'@type' => 'FAQPage',
+			'mainEntity' => $faq_schema
+		);
+		echo '<script type="application/ld+json">' . wp_json_encode($schema_data) . '</script>';
+	}
+
 	echo '</div>';
 
 	?>
