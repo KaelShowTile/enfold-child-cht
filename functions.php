@@ -81,8 +81,6 @@ function noindex_pages_with_unwanted_params( $robots )
     return $robots;
 }
 
-
-
 //Add Bootstrap
 function add_bootstrap() 
 {
@@ -400,6 +398,17 @@ function enfold_child_override_scripts()
 }
 add_action('wp_enqueue_scripts', 'enfold_child_override_scripts', 999); 
 
+//sort product by price on new arrive category
+add_filter( 'woocommerce_default_catalog_orderby', 'custom_default_sort_by_category' );
+
+function custom_default_sort_by_category( $sort_by ) {
+    // Check if we are on a product category page with the slug 'new-arrivals'
+    if ( is_product_category( 'new-arrivals' ) ) {
+        return 'date'; // 'date' results in Newness (New to Old)
+    }
+    
+    return $sort_by;
+}
 /**
  * Shortcode to display single product in archive style
  * Usage: [single_product_archive id="123"]
