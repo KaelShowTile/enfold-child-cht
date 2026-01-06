@@ -784,14 +784,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .glint-popup-message.show .glint-popup-content h3{animation-name: popup-title; animation-duration: 4s; animation-iteration-count: infinite;}
 .glint-popup-message.show .glint-popup-content a{color: #61cae9;}
 
-.avia_ajax_form .wpcf7-not-valid-tip{ margin-top: 0; font-size: 0.7rem; position: absolute; right: 10px; top: 20px;}
-form.wpcf7-form.init br{display: none;}
-#top form.wpcf7-form .wpcf7-form-control{margin-bottom: 0; color: #666;}
-#top form.wpcf7-form .wpcf7-form-control option{color: #666;}
-#top .cf7ascaptcha{color: #666;}
-#top .wpcf7-form-control-wrap.cf7as-captchcode .wpcf7-validates-as-required{width: 100% !important; margin-top: 5px;}
-#top input.wpcf7-form-control.wpcf7-submit{color: #fff; padding: 9px 60px;}
-span.wpcf7-spinner{position: absolute; left: 23px; top: 9px; background: transparent;}
+#top .frm_form_field input, #top .frm_form_field select, #top .frm_form_field textarea{margin-bottom: 0;}
 
 /*css animation*/
 @keyframes popup-title {
