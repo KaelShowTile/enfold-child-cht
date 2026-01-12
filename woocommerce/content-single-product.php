@@ -68,7 +68,7 @@ $product_tile = $product->get_title();
 
 				//get video id
 				$product_id = get_the_ID();
-				$vwg_video_url = get_post_meta($product_id, 'vwg_video_url', true);
+				$has_cht_product_video = glint_wc_video_gallery_has_video();
 
 				$lightbox_string = '<div id="cht-lightbox-modal" class="modal"><span class="close cursor" onclick="closeModal()">&times;</span><div class="modal-content">';
 				$lightbox_order = 1;
@@ -79,52 +79,39 @@ $product_tile = $product->get_title();
 					array_unshift( $attachment_ids, $main_image_id );
 				}
 
-				if ( $attachment_ids || $vwg_video_url) 
+				if ( $attachment_ids || $has_cht_product_video) 
 				{
 					echo '<div class="cht-product-gallery">';
 					echo '<figure class="woocommerce-product-gallery-container">';
-
 					
-					if ($vwg_video_url) 
-					{
-						$video_data = maybe_unserialize($vwg_video_url);
+					if ($has_cht_product_video){
 						
-						if (is_array($video_data)) 
-						{
-							foreach ($video_data as $video) 
-							{
-								if (isset($video['video_url'])) 
-								{
-									$video_url = $video['video_url']; ?>
+						$local_video_url = glint_wc_video_gallery_get_local_video_url(); ?>
+
+						<div data-woocommerce_gallery_thumbnail_url="" data-woocommerce_thumbnail_url="" data-thumb-alt="" data-vwg-video="1" class="woocommerce-product-gallery-image vwg_show_first">
+
+							<a href="<?php echo $local_video_url ?>" class="woocommerce-product-gallery__vwg_video lightbox-added">
+
+								<div data-setup="{}" playsinline="true" muted="true" loop="true" autoplay="true" preload="auto" class="video-js vwg_video_js vwg_video_js_1-dimensions vjs-controls-enabled vjs-workinghover vjs-v7 vjs-has-started vjs-user-inactive vjs-paused" id="vwg_video_js_1" tabindex="-1" role="region" lang="en-au" aria-label="Video Player">
+								
+									<?php echo glint_wc_video_gallery_get_video(); ?>
+
+									<?php if($local_video_url): ?>
+										<img id="img" autoplay="autoplay" preload="metadata" playsinline muted="on" class="fullscreen-video" loop="loop" src="<?php echo $local_video_url ?>">
+									<?php endif; ?>
 													
-									<div data-woocommerce_gallery_thumbnail_url="" data-woocommerce_thumbnail_url="" data-thumb-alt="" data-vwg-video="1" class="woocommerce-product-gallery-image vwg_show_first">
+								</div>
 
-										<a href="<?php echo $video_url ?>" class="woocommerce-product-gallery__vwg_video lightbox-added">
-
-											<div data-setup="{}" playsinline="true" muted="true" loop="true" autoplay="true" preload="auto" class="video-js vwg_video_js vwg_video_js_1-dimensions vjs-controls-enabled vjs-workinghover vjs-v7 vjs-has-started vjs-user-inactive vjs-paused" id="vwg_video_js_1" tabindex="-1" role="region" lang="en-au" aria-label="Video Player">
-											
-												<video id="vwg_video_js_1_html5_api" class="vjs-tech" preload="auto" autoplay="" loop="" muted="muted" playsinline="playsinline" data-setup="{}" tabindex="-1" role="application">
-													<source src="<?php echo $video_url ?>" type="video/mp4">
-												</video>
-
-												<img id="img" autoplay="autoplay" preload="metadata" playsinline muted="on" class="fullscreen-video" loop="loop" src="<?php echo $video_url ?>">
-																
-											</div>
-
-										</a>
-									
-									</div>
-									
-									<?php }
-							}
-						} ?>
+							</a>
+						
+						</div>
 
 						<script>
 							var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 											
 							if (isSafari) 
 							{
-								document.getElementById("vwg_video_js_1_html5_api").style.display = "none";
+								document.getElementById("glint_wc_video_html_player").style.display = "none";
 							} else {
 								document.getElementById("img").style.display = "none";
 							}
