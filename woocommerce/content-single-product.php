@@ -241,8 +241,8 @@ $product_tile = $product->get_title();
 				$question = esc_html($question_raw);
 				$answer = esc_html($answer_raw);
 				
-				$shortcode_string .= '<h5 class="cht-qna-question">' . $question . '</h5>';
-				$shortcode_string .= '<p class="cht-qna-answer">' . $answer . '</p>';
+				$shortcode_string .= '<h5 class="cht-qna-question">Q: ' . $question . '</h5>';
+				$shortcode_string .= '<p class="cht-qna-answer">A: ' . $answer . '</p>';
 
 				//generate qna schema
 				$faq_schema[] = array(

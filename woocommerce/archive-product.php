@@ -150,8 +150,8 @@ if( $qa_cate ){
 		$question = esc_html($row['cate_qna_question']);
 		$answer = wp_filter_nohtml_kses($row['cate_qna_answer']);
 
-		$qa_shortcode_string .= '<h5 class="cht-qna-question">' . $question . '</h5>';
-		$qa_shortcode_string .= '<p class="cht-qna-answer">' . $answer . '</p>';
+		$qa_shortcode_string .= '<h5 class="cht-qna-question">Q: ' . $question . '</h5>';
+		$qa_shortcode_string .= '<p class="cht-qna-answer">A: ' . $answer . '</p>';
 
 		//generate qna schema
 		$faq_schema[] = array(
