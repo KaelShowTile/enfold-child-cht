@@ -156,10 +156,10 @@ if( $qa_cate ){
 		//generate qna schema
 		$faq_schema[] = array(
 			'@type' => 'Question',
-			'name' => $question_raw,
+			'name' => $question,
 			'acceptedAnswer' => array(
 				'@type' => 'Answer',
-				'text' => $answer_raw
+				'text' => $answer
 			)
 		);
 	}
