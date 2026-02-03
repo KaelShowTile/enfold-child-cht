@@ -58,7 +58,9 @@ h4, h5, h6{font-size: 1rem; font-weight: 600; letter-spacing: 0.5px; text-transf
 #top .av-control-minimal .avia-slideshow-arrows a.prev-slide{left: 15px;}
 #top .av-control-minimal .avia-slideshow-arrows a.next-slide{right: 15px;}
 
-/* #top.wp-singular.page-template-default.page{padding: 0;} */
+/* preload */
+#top .av-siteloader-wrap{background-color: #232f3d;}
+#top .av-siteloader-wrap .av-siteloader{display: none;}
 
 /* Hide chatbox icon on visualizer */
 .page-id-76520 #chat-widget-container{display: none;}
@@ -590,6 +592,8 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .visualizer-container .container.av-section-cont-open .avia_codeblock .container{margin: auto 0; max-width: 100%; padding: 0;}
 .visualizer-container .container.av-section-cont-open .template-page{padding-bottom: 0; padding: 50px 0 0;}
 .visualizer-container .container.av-section-cont-open #tilesview-frame{height: calc(100vh - 160px);}
+
+.cht-qna-question{margin: 30px auto 5px;}
 
 /* cart */
 .wc-block-cart-item__prices del{text-decoration: line-through !important; color: #000;}
