@@ -168,7 +168,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
 .glint-menu-container{width: 100%; display: inline-block; position: fixed; z-index: 999;}
 .glint-menu-root{background: #232f3d; padding: 20px 20px 0 50px; justify-content: center; width: 100%;}
-.glint-menu-container .glint-menu-item .glint-menu-icon{filter: brightness(100);}
+.glint-menu-container .glint-menu-item a p{padding: 0 10px;}
 #top .glint-menu-container .glint-menu-item p{color: #fff;}
 #top .glint-menu-container .glint-mega-menu .glint-column-title p{color: #000;}
 #top .glint-menu-container .glint-item-column .glint-menu-item.glint-item-link p{color: #666;}
