@@ -1005,6 +1005,10 @@ ul.woocommerce-error{background-color: #f8f8f8;}
     #top .av_two_third{width: 100%; margin: auto 0;}
     #top .av_one_third{width: 100%; margin: auto 0;}
 
+    .glint-menu-container{display: none !important;}
+    .archive-sub-menu-container .archive-sub-menu-container-col{width: 100%;}
+    .archive-sub-menu-container-col:hover .archive-sub-menu-container-dropdown{width: 100%;}
+
     .responsive .container{width: 100%; max-width: 100%;}
     .responsive #top .avia-product-slider-container .product{clear: none !important;}
     .responsive #top .avia-product-slider-container .product .woocommerce-loop-product__title{text-transform: capitalize; font-size: 0.85rem; letter-spacing: 0.5px; padding: 20px 0;}
