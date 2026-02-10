@@ -265,7 +265,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .archive-sub-menu-container{display: flex; flex-wrap: wrap; width: 100%; gap: 2%; margin: 20px auto 40px;}
 .archive-sub-menu-container .archive-sub-menu-container-col{width: 18.4%;}
 .archive-sub-menu-container .archive-sub-menu-container-col h5{font-size: 1.1rem; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; display: inline-block; float: left; padding-right: 5px;}
-.archive-sub-menu-container .archive-sub-menu-container-col ul{padding: 10px 20px 5px; margin: 0;}
+.archive-sub-menu-container .archive-sub-menu-container-col ul{padding: 10px 15px 5px; margin: 0;}
 .archive-sub-menu-container .archive-sub-menu-container-item{list-style: none; margin-left: 0; display: inline-block; width: 100%; padding: 0 5px 5px 5px; border-bottom: 1px dashed #ddd;}
 .archive-sub-menu-container .archive-sub-menu-container-item p{margin-bottom: 0; display: inline-block; float: left; line-height: 32px; color: #666; font-size: 0.85rem; text-transform: uppercase;}
 .archive-sub-menu-container .archive-sub-menu-container-item img{display: inline-block; float: right; width: 32px; height: 32px;}
