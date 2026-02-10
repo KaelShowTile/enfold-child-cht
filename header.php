@@ -305,20 +305,8 @@ $body_classes = implode( ' ', array_unique( array_filter( $body_classes ) ) );
 	<!-- Page Menu -->
 	<div id='main' class='all_colors' data-scroll-offset='<?php echo avia_header_setting( 'header_scroll_offset' ); ?>'>
 
-		<?php
-		// Load the sub-menu page content
-		$menu_html = get_cached_mega_menu();
-
-		if ($menu_html) {
-			echo $menu_html;
-		} else {
-			// Fallback in case of issues
-			$submenu_page = get_page_by_path('mega-menu');
-			if ($submenu_page) {
-				echo apply_filters('mega_menu_content', $submenu_page->post_content);
-			}
-		}
-
+		<?php echo do_shortcode('[glint_menu id="1"]');
+		
 		if( isset( $avia_config['temp_logo_container'] ) )
 		{
 			echo $avia_config['temp_logo_container'];

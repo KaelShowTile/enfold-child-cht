@@ -53,13 +53,36 @@ if ( woocommerce_product_loop() ) {
 		$current_category = get_queried_object();
 		$base_category = $current_category->slug; // Get slug
 
-		echo'<span class="hide-this-area" id="find-current-category">' . $base_category . '</span>';
+		echo'<span class="hide-this-area" id="Zfind-current-category">' . $base_category . '</span>';
 	}else{
 		echo '<div class="term-description all-tiles"><h1>All Tiles</h1></div>';
 	}
 
 	?>
+
+	<!-- Sub Menu -->
+	<div class="archive-sub-menu-container">
+		<?php 
+		$menuCols = get_field('category_sub_menu', 'product_cat_' . $current_category->term_id);
+		if( $menuCols ){
+			foreach ($menuCols as $menuCols) {
+				$menuItems = $menuCols['sub_menu_item_list'];
+				echo '<div class="archive-sub-menu-container-col">';
+				echo '<h5>' . $menuCols['sub_menu_column_name']. '</h5>';
+				echo '<img class="dropdown-icon" src="' . get_stylesheet_directory_uri() . '/imgs/dropdown.svg">';
+				echo '<div class="archive-sub-menu-container-dropdown">';
+				echo '<ul>';
+					if($menuItems){
+						foreach ($menuItems as $menuItem) {
+							echo '<a href="' . $menuItem['sub_menu_item_link'] . '"><li class="archive-sub-menu-container-item"><p>' . $menuItem['sub_menu_item_name'] . '</p><img src="' . $menuItem['sub_menu_item_icon'] .'"></li></a>'; 
+						}
+					}
+				echo '</ul></div></div>';
+			}
+		}?>
+	</div>
 	
+	<!-- filter -->
 	<div class="archive-list-header">
 		<div id="call-glint-filter">
 			<img src="<?php echo get_site_url(); ?>/wp-content/uploads/2025/05/fliter.svg">
