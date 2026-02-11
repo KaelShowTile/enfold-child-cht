@@ -1203,6 +1203,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
 @media only screen and (max-width: 479px){
     .responsive #top.archive.tax-product_cat #main .products .product{width: 48%; margin: 0 1% 15px;}
+    .responsive #top.archive #main .products .product{width: 48%; margin: 0 1% 15px;}
 } 
 
 @media only screen and (max-width: 400px) 
