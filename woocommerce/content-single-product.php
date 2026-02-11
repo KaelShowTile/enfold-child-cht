@@ -90,7 +90,7 @@ $product_tile = $product->get_title();
 
 						<div data-woocommerce_gallery_thumbnail_url="" data-woocommerce_thumbnail_url="" data-thumb-alt="" data-vwg-video="1" class="woocommerce-product-gallery-image vwg_show_first">
 
-							<a href="<?php echo $local_video_url ?>" class="woocommerce-product-gallery__vwg_video lightbox-added">
+							<a href="<?php echo $local_video_url ?>" class="woocommerce-product-gallery__vwg_video cht-lightbox-added">
 
 								<div data-setup="{}" playsinline="true" muted="true" loop="true" autoplay="true" preload="auto" class="video-js vwg_video_js vwg_video_js_1-dimensions vjs-controls-enabled vjs-workinghover vjs-v7 vjs-has-started vjs-user-inactive vjs-paused" id="vwg_video_js_1" tabindex="-1" role="region" lang="en-au" aria-label="Video Player">
 								
@@ -129,7 +129,7 @@ $product_tile = $product->get_title();
 							if($image_medium)
 							{
 								echo '<div class="woocommerce-product-gallery-image">';
-								echo '<a class="lightbox-added">';
+								echo '<a class="cht-lightbox-added">';
 								echo '<img decoding="async" src="'. esc_url( $image_medium[0] ) .'"  alt="'. $product_tile .'" onclick="openModal();currentSlide(' . $lightbox_order . ')">';
 								echo '</a>';
 								echo '</div>';

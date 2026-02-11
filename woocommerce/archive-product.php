@@ -61,7 +61,7 @@ if ( woocommerce_product_loop() ) {
 	?>
 
 	<!-- Sub Menu -->
-	<div class="archive-sub-menu-container">
+	<div class="archive-sub-menu-container desktop-only">
 		<?php 
 		$menuCols = get_field('category_sub_menu', 'product_cat_' . $current_category->term_id);
 		if( $menuCols ){
