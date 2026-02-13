@@ -36,6 +36,7 @@ h4, h5, h6{font-size: 1rem; font-weight: 600; letter-spacing: 0.5px; text-transf
 .av_default_container_wrap.container_wrap.fullsize{border-width: 0;}
 .avia-arrow{display: none;}
 span.image-overlay.overlay-type-video{display: none !important;}
+.image-overlay.overlay-type-extern{display: none !important;}
 .image-overlay.overlay-type-extern .image-overlay-inside:before{display: none;}
 .avia-section.main_color.avia-section-default{border-width: 0;}
 .stretch_full.container_wrap.empty_title.title_container{margin-top: 80px; border-width: 0; background: transparent;}
@@ -125,6 +126,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #top .products .woocommerce-loop-product__title{min-height: 50px; width:100%; padding: 10px 5px 5px; display: inline-block; color: #232f3d; font-weight: 600; text-align: center; text-transform: capitalize;}
 #top.post-type-archive .products .woocommerce-loop-product__title{padding: 15px 20px;}
 #top .products .price{padding: 0 20px; margin-bottom: 15px; display: inline-block; width: 100%; text-align: center;}
+#top #wrap_all .products .price ins::before, #top #wrap_all .box-price-container .price ins::before{display: none;}
 #top .inner_product{ display: flex;  width: 100%; flex-direction: column;}
 .loading-spinner {display: flex; align-items: center; justify-content: center; padding: 20px;}
 .loading-spinner .spinner { border: 3px solid rgba(0, 0, 0, 0.1); border-radius: 50%; border-top: 3px solid #000; width: 20px; height: 20px; animation: spin 1s linear infinite; margin-right: 10px;}
