@@ -126,7 +126,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #top .products .woocommerce-loop-product__title{min-height: 50px; width:100%; padding: 10px 5px 5px; display: inline-block; color: #232f3d; font-weight: 600; text-align: center; text-transform: capitalize;}
 #top.post-type-archive .products .woocommerce-loop-product__title{padding: 15px 20px;}
 #top .products .price{padding: 0 20px; margin-bottom: 15px; display: inline-block; width: 100%; text-align: center;}
-#top #wrap_all .products .price ins::before, #top #wrap_all .box-price-container .price ins::before{display: none;}
+#top #wrap_all .products .price ins::before, #top #wrap_all .box-price-container .price ins::before, #top #wrap_all .product-slider .swiper-slide a .price ins::before, #top #wrap_all .products-grid .product .price ins::before{display: none;}
 #top .inner_product{ display: flex;  width: 100%; flex-direction: column;}
 .loading-spinner {display: flex; align-items: center; justify-content: center; padding: 20px;}
 .loading-spinner .spinner { border: 3px solid rgba(0, 0, 0, 0.1); border-radius: 50%; border-top: 3px solid #000; width: 20px; height: 20px; animation: spin 1s linear infinite; margin-right: 10px;}
@@ -267,15 +267,17 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #top div .product_on_sale .inner_product_header{padding-right: 15px;}
 
 .archive-sub-menu-container{display: flex; flex-wrap: wrap; width: 100%; gap: 2%; margin: 20px auto 40px;}
-.archive-sub-menu-container .archive-sub-menu-container-col{width: 18.4%;}
-.archive-sub-menu-container .archive-sub-menu-container-col h5{font-size: 1.1rem; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; display: inline-block; float: left; padding-right: 5px;}
-.archive-sub-menu-container .archive-sub-menu-container-col ul{padding: 10px 15px 5px; margin: 0;}
-.archive-sub-menu-container .archive-sub-menu-container-item{list-style: none; margin-left: 0; display: inline-block; width: 100%; padding: 0 5px 5px 5px; border-bottom: 1px dashed #ddd;}
-.archive-sub-menu-container .archive-sub-menu-container-item p{margin-bottom: 0; display: inline-block; float: left; line-height: 32px; color: #666; font-size: 0.85rem; text-transform: uppercase;}
+.archive-sub-menu-container .archive-sub-menu-container-col{width: 18.4%;background: #232f3d; padding: 11px 20px 10px; border-radius: 5px; cursor: pointer; position: relative;}
+.archive-sub-menu-container .archive-sub-menu-container-col h5{font-size: 1rem; letter-spacing: 1px; text-transform: uppercase;     margin-bottom: 0; display: inline-block; float: left; padding-right: 5px; color: #fff;}
+.archive-sub-menu-container .archive-sub-menu-container-col ul{padding: 5px 0 5px; margin: 0;}
+.archive-sub-menu-container .archive-sub-menu-container-col ul a{display: inline-block; width: 100%; padding: 7px 10px 7px; height: auto; transition: 0.5s; margin-bottom: 0; line-height: 0; overflow: unset !important;}
+.archive-sub-menu-container .archive-sub-menu-container-col ul a:hover{background: #eee;}
+.archive-sub-menu-container .archive-sub-menu-container-item{list-style: none; margin-left: 0; display: inline-block; width: 100%; padding: 0 5px 0;}
+.archive-sub-menu-container .archive-sub-menu-container-item p{margin-bottom: 0; display: inline-block; float: left; line-height: 32px; color: #232f3d; font-size: 0.85rem; text-transform: uppercase;}
 .archive-sub-menu-container .archive-sub-menu-container-item img{display: inline-block; float: right; width: 32px; height: 32px;}
 .archive-sub-menu-container-dropdown{display: none; margin-top: 30px;}
-.archive-sub-menu-container-col .dropdown-icon{width: 12px; display: inline-block; float: left; margin-top: 4px; cursor: pointer;}
-.archive-sub-menu-container-col:hover .archive-sub-menu-container-dropdown{display: block; position: absolute; background: #fff; width: 18.4%; z-index: 99; box-shadow: 1px 5px 8px 0 rgba(0, 0, 0, 0.1); border-radius: 0 0 5px 5px;}
+.archive-sub-menu-container-col .dropdown-icon{width: 12px; display: inline-block; float: right; margin-top: 4px; filter: invert(100%);}
+.archive-sub-menu-container-col:hover .archive-sub-menu-container-dropdown{display: block; position: absolute; background: #fff; width: 100%; left: 0; z-index: 9; box-shadow: 1px 5px 8px 0 rgba(0, 0, 0, 0.1); border-radius: 0 0 5px 5px;}
 
 .archive.tax-product_cat .template-shop{padding-top: 10px;}
 .archive.tax-product_cat .entry-content-wrapper .term-description{margin: 0 auto 40px;}
