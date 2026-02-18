@@ -170,7 +170,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .header-icons-container .cht-mini-cart-icon .cht-cart-total-amount{position: absolute; top: -15px; margin-left: -10px;}
 .header-icons-container .cht-mini-cart-icon .cht-cart-total-amount bdi{font-size: 0.6rem; background: #61cae9; padding: 2px 4px; border-radius: 15px;}
 
-.glint-menu-container{width: 100%; display: inline-block; position: fixed; z-index: 999;}
+.glint-menu-container{width: 100%; display: inline-block; position: fixed; z-index: 9;}
 .glint-menu-root{background: #232f3d; padding: 20px 20px 0 50px; justify-content: center; width: 100%;}
 .glint-menu-container .glint-menu-item a p{padding: 0 10px;}
 #top .glint-menu-container .glint-menu-item p{color: #fff;}
