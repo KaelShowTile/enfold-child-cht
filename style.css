@@ -43,7 +43,7 @@ span.image-overlay.overlay-type-video{display: none !important;}
 .single.single-product .stretch_full.container_wrap.empty_title.title_container{background: transparent;}
 #top.home.page-template-default .stretch_full.container_wrap.empty_title.title_container{display: none;}
 .container_wrap.container_wrap_first{border-top-width: 0;}
-.breadcrumb.breadcrumbs.avia-breadcrumbs{left: 20px;}
+.breadcrumb.breadcrumbs.avia-breadcrumbs{left: 20px; z-index: 1;}
 .avia_desktop .av-hover-overlay-active .av-masonry-image-container{opacity: 1;}
 #scroll-top-link.avia-svg-icon svg:first-child{margin-top: 0;}
 #top .blue-title{color: #60cae8;}
