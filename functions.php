@@ -325,7 +325,7 @@ add_filter('mega_menu_content', function($content) {
     $content = convert_smilies($content);
     $content = wpautop($content);
     $content = shortcode_unautop($content);
-    
+
     return $content;
 });
 
@@ -980,6 +980,140 @@ function change_free_shipping_label_to_empty( $label, $method ) {
     return $label;
 }
 
+/**
+ * Generate SEO title for a product when created/updated
+ * Format: Brand name + size name + color name + product name
+ */
+/*
+function generate_product_seo_title($product_id) {
+    // Get the product object
+    $product = wc_get_product($product_id);
+    
+    if (!$product) {
+        return;
+    }
+    
+    // Get product name
+    $product_name = $product->get_name();
+    
+    // Get brand name (assuming brand is stored as a custom field or taxonomy)
+    // You may need to adjust this based on how you store brand information
+    $brand_name = '';
+    $brand = get_field('brand', $product_id); // Using ACF field
+    if ($brand) {
+        $brand_name = $brand;
+    } else {
+        // Try to get brand from product meta
+        $brand_name = get_post_meta($product_id, 'brand', true);
+    }
+    
+    // Get size attribute value (pa_size)
+    $size_name = '';
+    $size_terms = wp_get_post_terms($product_id, 'pa_size');
+    if (!empty($size_terms) && !is_wp_error($size_terms)) {
+        $size_name = $size_terms[0]->name; // Get the first size term
+    }
+    
+    // Get color attribute value (pa_colour)
+    $color_name = '';
+    $color_terms = wp_get_post_terms($product_id, 'pa_colour');
+    if (!empty($color_terms) && !is_wp_error($color_terms)) {
+        $color_name = $color_terms[0]->name; // Get the first color term
+    }
+    
+    // Build the SEO title
+    $seo_title_parts = array_filter([
+        $brand_name,
+        $size_name,
+        $color_name,
+        $product_name
+    ]);
+    
+    $seo_title = implode(' ', $seo_title_parts);
+    
+    // Update the custom meta field
+    update_post_meta($product_id, 'cht_product_google_title', $seo_title);
+}
+     
+//Hook into product save to automatically generate SEO title
+
+add_action('woocommerce_update_product', 'generate_product_seo_title');
+add_action('woocommerce_create_product', 'generate_product_seo_title');
+
+*/
+
+/**
+ * Generate SEO titles for all existing products
+ * This function can be called once to update all products
+ */
+
+/*
+function generate_seo_titles_for_all_products() {
+    // Get all products
+    $args = array(
+        'post_type' => 'product',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'fields' => 'ids'
+    );
+    
+    $products = get_posts($args);
+    $updated_count = 0;
+    
+    foreach ($products as $product_id) {
+        // Only update if the meta field doesn't exist or is empty
+        $existing_title = get_post_meta($product_id, 'cht_product_google_title', true);
+        
+        if (empty($existing_title)) {
+            generate_product_seo_title($product_id);
+            $updated_count++;
+        }
+    }
+    
+    return $updated_count;
+}
+
+*/
+
+/**
+ * URL trigger function for bulk SEO title generation
+ * Access /?update_seo_title to trigger the bulk update
+ */
+
+/*
+function cht_trigger_bulk_seo_titles_via_url() {
+    // Check if the URL parameter is present and user has admin privileges
+    if (isset($_GET['update_seo_title']) && current_user_can('manage_options')) {
+        $count = generate_seo_titles_for_all_products();
+        wp_die(
+            '<div style="padding: 20px; font-family: Arial, sans-serif;">' .
+            '<h2>SEO Title Generation Complete</h2>' .
+            '<p>Successfully generated SEO titles for <strong>' . $count . '</strong> products.</p>' .
+            '<p><a href="' . admin_url() . '">Return to Dashboard</a></p>' .
+            '</div>',
+            'SEO Titles Updated'
+        );
+    }
+}
+
+add_action('init', 'cht_trigger_bulk_seo_titles_via_url');
+ */
+/**
+ * tempory function to block fake order
+ */
+add_action('woocommerce_after_checkout_validation', 'block_specific_address_bot', 10, 2);
+
+function block_specific_address_bot($data, $errors) {
+    // Define the address to block
+    $blocked_address = '1 George St';
+    
+    // Check billing and shipping address
+    if (strpos(strtolower($data['billing_address_1']), strtolower($blocked_address)) !== false || 
+        strpos(strtolower($data['shipping_address_1']), strtolower($blocked_address)) !== false) {
+        
+        $errors->add('validation', '<strong>Order Error:</strong> This address is flagged. Please contact support.');
+    }
+}
 
 
 ?>
