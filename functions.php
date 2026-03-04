@@ -6,6 +6,70 @@ function enqueue_child_theme_styles()
   	wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
 }
 
+// temporarily block function
+/**
+ * Part 1: Block the order and flag the IP with an expiration timestamp
+ */
+add_action('woocommerce_after_checkout_validation', 'block_specific_address_and_ip_v2', 10, 2);
+
+function block_specific_address_and_ip_v2($data, $errors) {
+    $target_address_1 = '1 George St';
+    $target_address_2 = '1';
+
+    if (strtolower(trim($data['billing_address_1'])) === strtolower($target_address_1) && 
+        strtolower(trim($data['billing_address_2'])) === strtolower($target_address_2)) {
+        
+        $user_ip = $_SERVER['REMOTE_ADDR'];
+        $blacklist = get_option('ct_blocked_ips', array());
+
+        // Add the IP with a "current time" timestamp
+        $blacklist[$user_ip] = time();
+
+        // Safety Measure: Keep only the 100 most recent blocked IPs to prevent DB bloat
+        if (count($blacklist) > 100) {
+            asort($blacklist); // Sort by oldest timestamp
+            array_shift($blacklist); // Remove the oldest one
+        }
+
+        update_option('ct_blocked_ips', $blacklist);
+
+        $errors->add('address_blocked', '<strong>Order Error:</strong> This address is not eligible for delivery.');
+    }
+}
+
+/**
+ * Part 2: Check the IP and auto-clean expired blocks
+ */
+add_action('init', 'enforce_ip_blacklist_v2');
+
+function enforce_ip_blacklist_v2() {
+    $blacklist = get_option('ct_blocked_ips', array());
+    if (empty($blacklist)) return;
+
+    $user_ip = $_SERVER['REMOTE_ADDR'];
+    $current_time = time();
+    $expiry_time = 24 * 60 * 60; // 24 hours in seconds
+    $changed = false;
+
+    // Clean up expired IPs while checking
+    foreach ($blacklist as $ip => $timestamp) {
+        if ($current_time - $timestamp > $expiry_time) {
+            unset($blacklist[$ip]);
+            $changed = true;
+        }
+    }
+
+    if ($changed) {
+        update_option('ct_blocked_ips', $blacklist);
+    }
+
+    // If the user is in the (cleaned) list, block them
+    if (isset($blacklist[$user_ip])) {
+        wp_die('Access Denied. Your IP address is temporarily flagged.', 'Blocked', array('response' => 403));
+    }
+}
+
+
 //Force collection template
 add_filter('single_template', function($template) {
     global $post;
