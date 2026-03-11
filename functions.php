@@ -1044,5 +1044,28 @@ function change_free_shipping_label_to_empty( $label, $method ) {
     return $label;
 }
 
+//generate postmeta for Google Merchant center 
+add_filter('get_post_metadata', 'gmc_title_fallback_logic', 10, 4);
+
+function gmc_title_fallback_logic($value, $object_id, $meta_key, $single) {
+    //only trigger when _dynamic_gmc_title is called
+    if ($meta_key === '_dynamic_gmc_title') {
+        
+        $acf_title = get_metadata('post', $object_id, 'custom_gmc_title', true);
+
+        //If have ACF value using ACF
+        if (!empty($acf_title)) {
+            return $single ? $acf_title : array($acf_title);
+        }
+        //otherwise use post title
+        $product = wc_get_product($object_id);
+        if ($product) {
+            $post_title = $product->get_name();
+            return $single ? $post_title : array($post_title);
+        }
+    }
+    
+    return $value;
+}
 
 ?>
