@@ -176,6 +176,10 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #top .glint-menu-container .glint-menu-item p{color: #fff;}
 #top .glint-menu-container .glint-mega-menu .glint-column-title p{color: #000;}
 #top .glint-menu-container .glint-item-column .glint-menu-item.glint-item-link p{color: #666;}
+#top .glint-menu-container .glint-item-column .glint-menu-item.glint-item-link.tile-product-menu-item{border-width: 0; margin-top: 30px;}
+#top .glint-menu-container .glint-item-column .glint-menu-item.glint-item-link.tile-product-menu-item a{padding-left: 0;}
+#top .glint-menu-container .glint-item-column .glint-menu-item.glint-item-link.tile-product-menu-item a:hover{background: transparent;}
+#top .glint-menu-container .glint-item-column .glint-menu-item.glint-item-link.tile-product-menu-item p{font-size: 1.1rem; text-transform: uppercase; display: inline-block; width: 100%; color: #333; font-weight: 700; padding-left: 0;}
 
 /* sidebar menu */
 #cht-cart-sidebar { position: fixed; top: 0; right: -360px; width: 350px; height: 100%; padding: 40px 0 10px; background: #fff; box-shadow: -3px 0 15px 3px rgba(0, 0, 0, 0.25); z-index: 99999999999; transition: right 0.3s ease; overflow-y: auto;}
