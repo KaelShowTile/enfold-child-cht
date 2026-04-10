@@ -796,8 +796,10 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 /*for iphone*/
 .swiper.ration-4-9.below_image .swiper-slide{width: 200px !important;}
 .swiper.ration-4-9.below_image .swiper-slide img{aspect-ratio: 1 !important;width: 100% !important;}
+/*
 .swiper.image_text-slider .swiper-slide{align-items: center !important; justify-content: center !important; }
 .swiper.image_text-slider.below_image img{width: auto !important; max-width: 100% !important; flex-shrink: 0 !important; object-fit: contain; }
+*/
 
 /*temprory*/
 .av-logo-container .logo.avia-standard-logo{max-width: 230px; margin-top: 10px;}
