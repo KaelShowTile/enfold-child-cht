@@ -1068,4 +1068,30 @@ function gmc_title_fallback_logic($value, $object_id, $meta_key, $single) {
     return $value;
 }
 
+//shortcode function for social media icons
+function custom_enfold_social_profiles_shortcode( $atts ) {
+    // Adhering to the hyphenated naming convention for attributes
+    $args = shortcode_atts( array(
+        'custom-class' => ''
+    ), $atts, 'av-social-profiles' );
+
+    // Enfold's native arguments for building the social icon list
+    $social_args = array(
+        'outside' => 'ul',
+        'inside'  => 'li',
+        'append'  => ''
+    );
+    
+    // Fetch the HTML output directly from the theme options
+    $social_icons = avia_social_media_icons( $social_args, false );
+    
+    // Return the markup wrapped in a targetable div
+    if ( $social_icons ) {
+        return '<div class="custom-social-profiles ' . esc_attr( $args['custom-class'] ) . '">' . $social_icons . '</div>';
+    }
+    
+    return '';
+}
+add_shortcode( 'av-social-profiles', 'custom_enfold_social_profiles_shortcode' );
+
 ?>

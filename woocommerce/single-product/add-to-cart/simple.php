@@ -30,6 +30,8 @@ $product_id = $product->get_id();
 $thumbnail_id = $product->get_image_id();
 $product_thumbnail = "";
 
+$isTrader = false;
+
 if($thumbnail_id){
 	$thumbnail_array = wp_get_attachment_image_src($thumbnail_id, 'woocommerce_thumbnail');
 	if ($thumbnail_array){
@@ -64,7 +66,17 @@ else
 {
 	$box_price = get_post_meta($product->get_id(), '_regular_price', true); 
 }
-	
+
+if(function_exists('glint_is_trader')){
+	if(glint_is_trader()){
+		$trader_price = get_post_meta( $product_id, '_trader_price', true );
+		if ($trader_price) {
+			$box_price = $trader_price;
+			$isTrader = true;
+		}
+	}
+}
+
 if($product_suffix == "m2")
 {
 	$m2_price = round(($box_price/$step_value),2);
@@ -128,7 +140,7 @@ if ( $product->is_in_stock() ) : ?>
 			?>
 
 			<?php if ( $backorder_status == false ) : ?>
-				<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+				<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" trader="<?php echo $isTrader;?>" class="single_add_to_cart_button button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
 			<?php endif; ?>
 			
 		</form>

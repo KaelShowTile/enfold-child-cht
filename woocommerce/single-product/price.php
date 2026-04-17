@@ -41,10 +41,21 @@ $product_id = $product->get_id();
 $box_price = $product->get_regular_price();
 $step_value = get_product_qty_data($product_id);
 $product_suffix = get_product_qty_suffix($product_id);
+$isTrader = false;
+
+if(function_exists('glint_is_trader')){
+	if(glint_is_trader()){
+		$isTrader = true;
+		$trader_price = get_post_meta( $product_id, '_trader_price', true );
+		if ($trader_price) {
+			$box_price = $trader_price;
+		}
+	}
+}
 
 if($check_product_type == 1) 
 {
-	if($product->is_on_sale()){
+	if($product->is_on_sale() && $isTrader == false){
 		echo '<div class="box-price-container">';
 	}else{
 		echo '<div class="box-price-container not-on-sale">';
@@ -53,10 +64,14 @@ if($check_product_type == 1)
 	if($product_suffix == "m2")
 	{
 		$m2_price = round(($box_price/$step_value),2);
-		
-		echo '<p class="' . esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ) . '">' . $product->get_price_html() . '<span class="woocommerce-Price-amount amount">/box = </span></p>';
 
-		if ($product->is_on_sale()) 
+		if($isTrader == true){
+			echo '<p class="' . esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ) . '"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $box_price . '</bdi></span><span class="woocommerce-Price-amount amount">/box = </span></p>';
+		}else{
+			echo '<p class="' . esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ) . '">' . $product->get_price_html() . '<span class="woocommerce-Price-amount amount">/box = </span></p>';
+		}
+		
+		if ($product->is_on_sale() && $isTrader == false) 
 		{
 			$m2_price_sales =  round((($product->get_sale_price())/$step_value),2);
 			echo '<del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $m2_price . '<bdi></span></del>';
