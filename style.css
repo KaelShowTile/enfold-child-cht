@@ -575,6 +575,19 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .widget_shopping_cart_content .updating:after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.5) url(../wp-content/themes/enfold child/imgs/loading-circle.gif) center center no-repeat;}
 #top .widget_shopping_cart_content .quantity input.qty{height: 24px; width: 36px; line-height: 24px;}
 
+#cht-checkout-container .wc-proceed-to-checkout .checkout-button{width: 100%; padding: 17px 0; border-radius: 5px;}
+#cht-checkout-container .wc-proceed-to-checkout .checkout-button:hover{opacity: 0.8;}
+#cht-checkout-container .wc-proceed-to-checkout #wc-stripe-express-checkout-element{padding-top: 5px;}
+#cht-checkout-container .cart_totals th{padding: 5px 10px;}
+#cht-checkout-container .cart_totals #shipping_method{margin: 10px 0 5px;}
+#cht-checkout-container .cart_totals #shipping_method li{display: inline-block; width: 100%;}
+#cht-checkout-container .cart_totals #shipping_method input{float: left; margin: 2px 5px 0;}
+#cht-checkout-container .cart_totals #shipping_method label{float: left;}
+#cht-checkout-container .woocommerce-cart-form .cart_item .variation dt.variation-{display: none;}
+#cht-checkout-container .woocommerce-cart-form .cart_item .variation dd.variation-{float: left;}
+#cht-checkout-container .woocommerce-cart-form .cart_item .variation dd.variation- #cart-quantity{font-weight: 400; color: #666;}
+#cht-checkout-container .woocommerce-cart-form table.shop_table.cart td.product-remove .remove{margin-left: 50%; transform: translateX(-50%);}
+
 /* checkout - block */
 #top .wc-block-components-totals-coupon__form{display: block;}
 #top .wc-block-components-totals-coupon__form .wc-block-components-button{min-height: 0; padding: 10px 25px;}
@@ -1227,6 +1240,8 @@ ul.woocommerce-error{background-color: #f8f8f8;}
     .delivery-option-inner{width: 100%; padding-left: 10px;}
     .delivery-option-inner.mobile-seperator{padding-bottom: 30px; margin-bottom: 30px; border-bottom: 3px solid #f5f5f5 !important;}
     .cht-sample-button-container{margin: 10px 0 0 10px;}
+
+    #cht-checkout-container .woocommerce-cart-form table.shop_table.cart .product-name{text-align: left; padding: 5px;}
     
 }
 
