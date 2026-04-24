@@ -1096,34 +1096,22 @@ add_shortcode( 'av-social-profiles', 'custom_enfold_social_profiles_shortcode' )
 
 
 //email order list code
-add_shortcode( 'cht_order_details', 'cht_order_details_callback' );
+add_filter( 'yaymail_customs_shortcode', 'register_my_yaymail_custom_order_details', 10, 3 );
 
-function cht_order_details_callback( $atts ) {
-    $atts = shortcode_atts( array(
-        'order_id' => '',
-    ), $atts, 'cht_order_details' );
+function register_my_yaymail_custom_order_details( $shortcode_list, $yaymail_informations, $args = array() ) {
+    // 注册短代码 [yaymail_custom_shortcode_order_info]
+    // 必须以 yaymail_custom_shortcode_ 开头
+    $shortcode_list['[yaymail_custom_shortcode_order_info]'] = generate_yaymail_order_details_html( $args );
+    
+    return $shortcode_list;
+}
 
-    $order_id_string = $atts['order_id'];
-
-    //get order id by Yaymail shortcode
-    if ( ! is_numeric( $order_id_string ) && strpos( $order_id_string, '[' ) !== false ) {
-        $order_id_string = do_shortcode( $order_id_string );
+function generate_yaymail_order_details_html( $args ) {
+    if ( isset( $args['order'] ) && is_object( $args['order'] ) ){
+        $order = $args['order'];
     }
 
-    $order_id = intval( sanitize_text_field( $order_id_string ) );
-
-    if ( ! is_numeric( $order_id_string ) && strpos( $order_id_string, '[' ) !== false ) {
-        $order_id_string = do_shortcode( $order_id_string );
-    }
-    $order_id = intval( sanitize_text_field( $order_id_string ) );
-
-    if ( ! $order_id ) {
-        return;
-    }
-
-    $order = wc_get_order( $order_id );
-
-    if ( ! $order ) {
+    if(!$order){
         return;
     }
 
