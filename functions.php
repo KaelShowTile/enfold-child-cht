@@ -1098,7 +1098,7 @@ add_shortcode( 'av-social-profiles', 'custom_enfold_social_profiles_shortcode' )
 //email order list code
 add_shortcode( 'cht_order_details', 'cht_order_details_callback' );
 
-function my_custom_order_details_callback( $atts ) {
+function cht_order_details_callback( $atts ) {
     $atts = shortcode_atts( array(
         'order_id' => '',
     ), $atts, 'cht_order_details' );
