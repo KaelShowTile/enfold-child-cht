@@ -1105,51 +1105,29 @@ function my_custom_order_details_callback( $atts ) {
 
     $order_id_string = $atts['order_id'];
 
-    // 2. 核心逻辑：确保正确获取 Order ID
-    // 应对情况A：YayMail 可能在处理你的短代码之前，就已经把 [yaymail...] 替换成了数字 (例如 "1234")
-    // 应对情况B：如果没有提前替换，WordPress 默认不会解析属性里的短代码，它会是一个字符串 "[yaymail...]"
+    //get order id by Yaymail shortcode
     if ( ! is_numeric( $order_id_string ) && strpos( $order_id_string, '[' ) !== false ) {
-        // 强制解析里面的 YayMail 短代码
         $order_id_string = do_shortcode( $order_id_string );
     }
 
-    // 清理并转换为纯数字
     $order_id = intval( sanitize_text_field( $order_id_string ) );
 
-    // 2. 核心逻辑：确保正确获取 Order ID (兼容 YayMail 短代码)
     if ( ! is_numeric( $order_id_string ) && strpos( $order_id_string, '[' ) !== false ) {
         $order_id_string = do_shortcode( $order_id_string );
     }
     $order_id = intval( sanitize_text_field( $order_id_string ) );
 
     if ( ! $order_id ) {
-        return '<p>无法获取订单信息。</p>';
+        return;
     }
 
-    // 3. 获取 WooCommerce 订单对象
     $order = wc_get_order( $order_id );
 
     if ( ! $order ) {
-        return '<p>订单不存在。</p>';
+        return;
     }
 
-    // --- 4. 获取自定义字段等基础信息 ---
-    $custom_field_value = $order->get_meta( '_my_custom_shipping_date' ); // 替换为你的 meta key
-    $billing_first_name = $order->get_billing_first_name();
-
-    // --- 5. 拼装 HTML 输出 (基础信息部分) ---
-    $output = '<div style="border: 1px solid #e5e5e5; padding: 20px; margin-top: 20px; border-radius: 5px; background-color: #fafafa; font-family: sans-serif;">';
-    $output .= '<h3 style="color: #333; margin-top: 0;">补充订单详情</h3>';
-    
-    $output .= '<p style="margin-bottom: 10px;"><strong>客户：</strong> ' . esc_html( $billing_first_name ) . '</p>';
-    
-    if ( ! empty( $custom_field_value ) ) {
-         $output .= '<p style="margin-bottom: 20px;"><strong>自定义字段内容：</strong> ' . esc_html( $custom_field_value ) . '</p>';
-    }
-
-    // --- 6. 核心新增：遍历并输出订单中的所有商品 ---
-    // 
-    
+    //get order items
     $items = $order->get_items();
 
     if ( ! empty( $items ) ) {
@@ -1191,7 +1169,7 @@ function my_custom_order_details_callback( $atts ) {
         $output .= '</tbody>';
         $output .= '</table>';
     } else {
-        $output .= '<p style="color: #999;">此订单没有商品记录。</p>';
+        $output .= '<p style="color: #999;">No products.</p>';
     }
     
     $output .= '</div>';
