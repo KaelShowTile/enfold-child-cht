@@ -1144,11 +1144,11 @@ function generate_yaymail_order_details_html( $args ) {
             if($step_value == null || $step_value == 1){
                 $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . ' boxes</td>';
             }else{
-                $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . ' boxes<span>' . $total_value . ' ' . $product_suffix . '</span></td>';
+                $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . '  boxes<span style="display: inline-block;">Total: ' . $total_value . ' ' . $product_suffix . '</span></td>';
             }
             
             $output .= '<tr>';
-            $output .= '<td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #555;">' . esc_html( $product_name ) . '</td>';
+            $output .= '<td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #555; width: 45%;">' . esc_html( $product_name ) . '</td>';
             $output .= $quantity_html;
             $output .= '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: right; color: #555;">' . wp_kses_post( $line_total ) . '</td>';
             $output .= '</tr>';
