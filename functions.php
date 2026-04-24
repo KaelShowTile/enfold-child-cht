@@ -1140,11 +1140,13 @@ function generate_yaymail_order_details_html( $args ) {
             $step_value = round(get_product_qty_data($product_id), 2);
             $total_value = round(($step_value * esc_html($quantity)) ,2);
 
-            $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . '</td>';
+            $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . ' boxes</td>';
             if($step_value == null || $step_value == 1){
-                $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . ' boxes</td>';
+                if($product_suffix){
+                    $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . ' ' . $product_suffix . '</td>';
+                }  
             }else{
-                $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . '  boxes<span style="display: inline-block;">Total: ' . $total_value . ' ' . $product_suffix . '</span></td>';
+                $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . '  boxes<span style="display: inline-block; width: 100%;">total: ' . $total_value . ' ' . $product_suffix . '</span></td>';
             }
             
             $output .= '<tr>';
