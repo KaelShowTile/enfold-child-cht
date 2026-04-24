@@ -1094,4 +1094,109 @@ function custom_enfold_social_profiles_shortcode( $atts ) {
 }
 add_shortcode( 'av-social-profiles', 'custom_enfold_social_profiles_shortcode' );
 
+
+//email order list code
+add_shortcode( 'cht_order_details', 'cht_order_details_callback' );
+
+function my_custom_order_details_callback( $atts ) {
+    $atts = shortcode_atts( array(
+        'order_id' => '',
+    ), $atts, 'cht_order_details' );
+
+    $order_id_string = $atts['order_id'];
+
+    // 2. 核心逻辑：确保正确获取 Order ID
+    // 应对情况A：YayMail 可能在处理你的短代码之前，就已经把 [yaymail...] 替换成了数字 (例如 "1234")
+    // 应对情况B：如果没有提前替换，WordPress 默认不会解析属性里的短代码，它会是一个字符串 "[yaymail...]"
+    if ( ! is_numeric( $order_id_string ) && strpos( $order_id_string, '[' ) !== false ) {
+        // 强制解析里面的 YayMail 短代码
+        $order_id_string = do_shortcode( $order_id_string );
+    }
+
+    // 清理并转换为纯数字
+    $order_id = intval( sanitize_text_field( $order_id_string ) );
+
+    // 2. 核心逻辑：确保正确获取 Order ID (兼容 YayMail 短代码)
+    if ( ! is_numeric( $order_id_string ) && strpos( $order_id_string, '[' ) !== false ) {
+        $order_id_string = do_shortcode( $order_id_string );
+    }
+    $order_id = intval( sanitize_text_field( $order_id_string ) );
+
+    if ( ! $order_id ) {
+        return '<p>无法获取订单信息。</p>';
+    }
+
+    // 3. 获取 WooCommerce 订单对象
+    $order = wc_get_order( $order_id );
+
+    if ( ! $order ) {
+        return '<p>订单不存在。</p>';
+    }
+
+    // --- 4. 获取自定义字段等基础信息 ---
+    $custom_field_value = $order->get_meta( '_my_custom_shipping_date' ); // 替换为你的 meta key
+    $billing_first_name = $order->get_billing_first_name();
+
+    // --- 5. 拼装 HTML 输出 (基础信息部分) ---
+    $output = '<div style="border: 1px solid #e5e5e5; padding: 20px; margin-top: 20px; border-radius: 5px; background-color: #fafafa; font-family: sans-serif;">';
+    $output .= '<h3 style="color: #333; margin-top: 0;">补充订单详情</h3>';
+    
+    $output .= '<p style="margin-bottom: 10px;"><strong>客户：</strong> ' . esc_html( $billing_first_name ) . '</p>';
+    
+    if ( ! empty( $custom_field_value ) ) {
+         $output .= '<p style="margin-bottom: 20px;"><strong>自定义字段内容：</strong> ' . esc_html( $custom_field_value ) . '</p>';
+    }
+
+    // --- 6. 核心新增：遍历并输出订单中的所有商品 ---
+    // 
+    
+    $items = $order->get_items();
+
+    if ( ! empty( $items ) ) {
+        $output .= '<table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">';
+        $output .= '<thead>';
+        $output .= '<tr>';
+        $output .= '<th style="text-align: left; padding: 8px 0; border-bottom: 1px solid #ddd;">Product</th>';
+        $output .= '<th style="text-align: center; padding: 8px 0; border-bottom: 1px solid #ddd;">Quantity</th>';
+        $output .= '<th style="text-align: right; padding: 8px 0; border-bottom: 1px solid #ddd;">Price</th>';
+        $output .= '</tr>';
+        $output .= '</thead>';
+        $output .= '<tbody>';
+
+        foreach ( $items as $item_id => $item ) {
+            $product_name = $item->get_name();
+            $quantity     = $item->get_quantity();
+            $line_total   = $order->get_formatted_line_subtotal( $item );
+            
+            $product = $item->get_product(); 
+            $product_id = $product->get_id();
+            $product_suffix = get_product_qty_suffix($product_id);
+            $step_value = round(get_product_qty_data($product_id), 2);
+            $total_value = round(($step_value * esc_html($quantity)) ,2);
+
+            $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . '</td>';
+            if($step_value == null || $step_value == 1){
+                $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . ' boxes</td>';
+            }else{
+                $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . ' boxes<span>' . $total_value . ' ' . $product_suffix . '</span></td>';
+            }
+            
+            $output .= '<tr>';
+            $output .= '<td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #555;">' . esc_html( $product_name ) . '</td>';
+            $output .= $quantity_html;
+            $output .= '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: right; color: #555;">' . wp_kses_post( $line_total ) . '</td>';
+            $output .= '</tr>';
+        }
+
+        $output .= '</tbody>';
+        $output .= '</table>';
+    } else {
+        $output .= '<p style="color: #999;">此订单没有商品记录。</p>';
+    }
+    
+    $output .= '</div>';
+
+    return $output;
+}
+
 ?>
