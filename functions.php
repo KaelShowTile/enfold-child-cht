@@ -1167,4 +1167,40 @@ function generate_yaymail_order_details_html( $args ) {
     return $output;
 }
 
+
+//Add suffix on stock amount on single product page
+add_filter( 'woocommerce_get_availability', 'custom_override_get_availability', 1, 2);
+
+function custom_override_get_availability( $availability, $_product ) {
+    // check if stock management is turned on
+    if ( $_product->is_in_stock() && $_product->managing_stock() ) {
+        $stock_quantity = $_product->get_stock_quantity();
+        $product_id = $_product->get_id();
+        $product_suffix = get_product_qty_suffix($product_id);
+        $step_value = round(get_product_qty_data($product_id), 2);
+        $box_suffix = "box";
+        if($stock_quantity > 1){
+            $box_suffix = "boxes";
+        }
+
+        if($product_suffix){
+            $availability['availability'] = $stock_quantity . " " . $box_suffix . " in stock.";
+        }else{
+            $availability['availability'] = $stock_quantity . " in stock.";
+        }
+
+        /*
+        if ( $step_value == null || $step_value == 1 ) {
+            if($product_suffix){
+                $availability['availability'] = $stock_quantity . " " . $product_suffix . " in stock.";
+            }else{
+                $availability['availability'] = $stock_quantity . " in stock.";
+            }
+        } else {
+            $availability['availability'] = $stock_quantity . " " . $box_suffix . " in stock.";
+        }*/
+    }
+    return $availability;
+}
+
 ?>
