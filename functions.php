@@ -1099,8 +1099,8 @@ add_shortcode( 'av-social-profiles', 'custom_enfold_social_profiles_shortcode' )
 add_filter( 'yaymail_customs_shortcode', 'register_my_yaymail_custom_order_details', 10, 3 );
 
 function register_my_yaymail_custom_order_details( $shortcode_list, $yaymail_informations, $args = array() ) {
-    // 注册短代码 [yaymail_custom_shortcode_order_info]
-    // 必须以 yaymail_custom_shortcode_ 开头
+    // shrotcode [yaymail_custom_shortcode_order_info]
+    // have to begin with yaymail_custom_shortcode_ 
     $shortcode_list['[yaymail_custom_shortcode_order_info]'] = generate_yaymail_order_details_html( $args );
     
     return $shortcode_list;
@@ -1140,13 +1140,13 @@ function generate_yaymail_order_details_html( $args ) {
             $step_value = round(get_product_qty_data($product_id), 2);
             $total_value = round(($step_value * esc_html($quantity)) ,2);
 
-            $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . ' boxes</td>';
+            $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">' . esc_html( $quantity ) . ' boxes</td>';
             if($step_value == null || $step_value == 1){
                 if($product_suffix){
-                    $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . ' ' . $product_suffix . '</td>';
+                    $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">' . esc_html( $quantity ) . ' ' . $product_suffix . '</td>';
                 }  
             }else{
-                $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">&times; ' . esc_html( $quantity ) . '  boxes<span style="display: inline-block; width: 100%;">total: ' . $total_value . ' ' . $product_suffix . '</span></td>';
+                $quantity_html = '<td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center; color: #555;">' . esc_html( $quantity ) . '  boxes<span style="display: inline-block; width: 100%;">(' . $total_value . ' ' . $product_suffix . ')</span></td>';
             }
             
             $output .= '<tr>';
