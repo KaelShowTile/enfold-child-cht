@@ -610,7 +610,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .wc-block-components-payment-methods__save-card-info{margin-top: 20px;}
 
 #top .wc-block-checkout__shipping-method .wc-block-checkout__shipping-method-container{background: transparent; gap: 10px;}
-#top .wc-block-checkout__shipping-method-option{background: #5c646d; color: #ccc; box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.35); border-width: 0;}
+#top .wc-block-checkout__shipping-method-option{background: #8d949d; color: #bbb; box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.35); border-width: 0;}
 #top .wc-block-checkout__shipping-method-option.wc-block-checkout__shipping-method-option--selected{background: #232f3d; color: #fff;}
 
 /* checkout - template */
