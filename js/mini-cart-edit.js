@@ -31,17 +31,21 @@ jQuery(function($) {
                 } else {
                     // Revert input value on error
                     $input.val($input.data('old-value'));
-                    alert(response.data.error || 'Error updating quantity');
+                    
+                    var errMsg = 'Error updating quantity';
+                    if (response.data && response.data.error) {
+                        errMsg = response.data.error;
+                    } else if (response.data && response.data.message) {
+                        errMsg = response.data.message;
+                    } else if (response.message) {
+                        errMsg = response.message;
+                    } else if (typeof response.data === 'string') {
+                        errMsg = response.data;  wp_send_json_error('Please input right number.')
+                    }
+                    
+                    alert(errMsg);
                 }
             },
-            error: function(xhr) {
-                console.error('Update error:', xhr.responseText);
-                $input.val($input.data('old-value'));
-                alert('Error updating quantity. Please try again.');
-            },
-            complete: function() {
-                $('.woocommerce-mini-cart').removeClass('updating');
-            }
         });
     });
 
