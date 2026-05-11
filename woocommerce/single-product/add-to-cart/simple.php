@@ -29,6 +29,8 @@ $product_id = $product->get_id();
 
 $thumbnail_id = $product->get_image_id();
 $product_thumbnail = "";
+$force_in_stock = intval( $product->get_meta( 'glint_force_in_stock' ) );
+$backorder = intval( $product->get_meta( 'glint_backorder' ) );
 
 $isTrader = false;
 
@@ -148,6 +150,13 @@ if ( $product->is_in_stock() ) : ?>
 	</div>
 	
 <?php endif; ?>
+
+	<?php if ( $force_in_stock === 1 ) {
+            echo '<div class="glint-stock-notice"><p>Please contact us to confirm stock first.</p></div>';
+        } elseif ( $backorder !== 0 ) {
+            echo '<div class="glint-stock-notice"><p>If you want to order more, please contact us for backorder.</p></div>';
+        }
+	?>
 
 	<?php if(cht_check_sample_id($product->get_id())): ?>
 

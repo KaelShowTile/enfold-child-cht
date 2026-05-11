@@ -797,6 +797,10 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
 .glint-product-review-item .review-images img{aspect-ratio: 1 / 1; object-fit: cover; margin-bottom: 5px;}
 
+.glint-stock-notice{margin: 2px 0 10px;}
+.glint-stock-notice p{color: #ff0000;}
+
+
 /*css animation*/
 @keyframes popup-title {
     0%   {letter-spacing: 1px;}
