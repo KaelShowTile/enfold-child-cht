@@ -1183,7 +1183,7 @@ function custom_override_get_availability( $availability, $_product ) {
             $box_suffix = "boxes";
         }
 
-        if($product_suffix){
+        if($product_suffix && $step_value !== 1.00){
             $availability['availability'] = $stock_quantity . " " . $box_suffix . " in stock.";
         }else{
             $availability['availability'] = $stock_quantity . " in stock.";

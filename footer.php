@@ -44,7 +44,7 @@ global $avia_config;
 		/**
 		 * Fired after a possible footer container has been added and actual footer output starts
 		 *
-.		 * @since 4.8.6.3
+		 * @since 4.8.6.3
 		 */
 		do_action( 'ava_before_footer_output' );
 
