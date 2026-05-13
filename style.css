@@ -342,7 +342,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .single-product-main-image{width: 65%;}
 .product-page-sticker{display: inline-block; width: 100%; margin: -20px auto 25px;}
 .product-page-sticker img{width: 60px; height: 60px; float: left; margin-right: 10px;}
-.discount-rate-container{width: 60px; height: 60px; background: #ff0000; text-align: center; display: flex; align-items: center; float: left; border-radius: 50%;}
+.discount-rate-container{width: 60px; height: 60px; background: #eb2427; text-align: center; display: flex; align-items: center; float: left; border-radius: 50%;}
 .discount-rate-container p{margin: 5px auto 0; color: #fff; width: 100%; line-height: 0.7; font-size: 1.25rem; text-transform: uppercase;}
 .discount-rate-container p span{font-size: 0.75rem;}
 
