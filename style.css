@@ -341,7 +341,10 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .single-product .template-shop{padding-top: 0;}
 .single-product-main-image{width: 65%;}
 .product-page-sticker{display: inline-block; width: 100%; margin: -20px auto 25px;}
-.product-page-sticker img{width: 60px; height: 60px;}
+.product-page-sticker img{width: 60px; height: 60px; float: left; margin-right: 10px;}
+.discount-rate-container{width: 60px; height: 60px; background: #ff0000; text-align: center; display: flex; align-items: center; float: left; border-radius: 50%;}
+.discount-rate-container p{margin: 5px auto 0; color: #fff; width: 100%; line-height: 0.7; font-size: 1.25rem; text-transform: uppercase;}
+.discount-rate-container p span{font-size: 0.75rem;}
 
 .single.single-product .woocommerce-product-gallery-container div{width: 48%; margin: 1%; float: left; position: relative; padding-bottom: 48%; margin-bottom: 15px; overflow: hidden;}
 #top .cht-product-gallery .woocommerce-product-gallery-image a.cht-lightbox-added{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; padding-top: 0;}

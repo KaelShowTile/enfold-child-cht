@@ -32,6 +32,7 @@ if ( post_password_required() ) {
 }
 
 $product_tile = $product->get_title();
+$sale_percentage = null;
 
 //load lightbox assets
 ?>
@@ -183,15 +184,25 @@ $product_tile = $product->get_title();
 					echo '<div class="cht-on-sale-container">';
 					echo '<span>Sale!</span>';
 					echo '</div>';
+
+					the_title( '<h1 class="product_title entry-title">', '</h1>' );
+
+					$sale_price = get_post_meta($product->get_id(), '_sale_price', true); 
+					$regular_price = get_post_meta($product->get_id(), '_regular_price', true); 
+					$sale_percentage = (1 - round(($sale_price/$regular_price),2)) * 100;
+				}else{
+					the_title( '<h1 class="product_title entry-title">', '</h1>' );
 				}
-				the_title( '<h1 class="product_title entry-title">', '</h1>' );
 
 				wc_get_template_part( 'single-product/price' );
 
 				$sticker_url = get_field('product_icon_image', $product_id);
-				if($sticker_url){
+				if($sticker_url || $sale_percentage){
 					echo '<span class="product-page-sticker">';
 					echo '<img src=' . $sticker_url . ' alt="cheapestile-current-promotion">';
+					if($sale_percentage){
+						echo '<div class="discount-rate-container"><p>' . $sale_percentage . '%</br><span>Off</span></p></div>';
+					}
 					echo '</span>';
 				}
 
