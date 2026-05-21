@@ -812,7 +812,7 @@ function validate_phone_field() {
 add_filter('woocommerce_cart_shipping_packages', 'split_cart_by_shipping_class');
 function split_cart_by_shipping_class($packages) {
     $new_packages = [];
-    $sample_package = $other_package = [
+    $sample_package = $contact_us_package = $other_package = [
         'contents' => [],
         'contents_cost' => 0,
         'applied_coupons' => WC()->cart->applied_coupons,
@@ -833,6 +833,9 @@ function split_cart_by_shipping_class($packages) {
         if ($shipping_class === 'sample-product') {
             $sample_package['contents'][$item_key] = $item;
             $sample_package['contents_cost'] += $item['line_total'];
+        } elseif ($shipping_class === 'contact-us') {
+            $contact_us_package['contents'][$item_key] = $item;
+            $contact_us_package['contents_cost'] += $item['line_total'];
         } else {
             $other_package['contents'][$item_key] = $item;
             $other_package['contents_cost'] += $item['line_total'];
@@ -841,6 +844,9 @@ function split_cart_by_shipping_class($packages) {
 
     if (!empty($sample_package['contents'])) {
         $new_packages[] = $sample_package;
+    }
+    if (!empty($contact_us_package['contents'])) {
+        $new_packages[] = $contact_us_package;
     }
     if (!empty($other_package['contents'])) {
         $new_packages[] = $other_package;
@@ -903,21 +909,71 @@ function sample_product_shipping_init() {
     }
 }
 
+// Register custom shipping method for Contact Us
+add_action('woocommerce_shipping_init', 'contact_us_shipping_init');
+function contact_us_shipping_init() {
+    if (!class_exists('WC_Shipping_Contact_Us')) {
+        class WC_Shipping_Contact_Us extends WC_Shipping_Method {
+            public function __construct($instance_id = 0) {
+                $this->id = 'contact_us_shipping';
+                $this->instance_id = absint($instance_id);
+                $this->method_title = __('Contact Us Shipping', 'text-domain');
+                $this->method_description = __('Custom shipping for contact-us products', 'text-domain');
+                $this->supports = ['shipping-zones', 'instance-settings'];
+                $this->enabled = 'yes';
+                
+                $this->init();
+            }
+
+            public function init() {
+                $this->init_form_fields();
+                $this->init_settings();
+                $this->title = $this->get_option('title', __('Please contact us for shipping fee of this/these product(s)', 'text-domain'));
+                add_action('woocommerce_update_options_shipping_' . $this->id, [$this, 'process_admin_options']);
+            }
+
+            public function init_form_fields() {
+                $this->form_fields = [
+                    'title' => [
+                        'title' => __('Method Title', 'text-domain'),
+                        'type' => 'text',
+                        'default' => __('Please contact us for shipping fee of this/these product(s)', 'text-domain')
+                    ]
+                ];
+            }
+
+            public function calculate_shipping($package = []) {
+                $this->add_rate([
+                    'id' => $this->id,
+                    'label' => $this->title,
+                    'cost' => 0,
+                    'package' => $package,
+                ]);
+            }
+        }
+    }
+}
+
 add_filter('woocommerce_shipping_methods', 'add_sample_product_shipping_method');
 function add_sample_product_shipping_method($methods) {
     $methods['sample_product_shipping'] = 'WC_Shipping_Sample_Product';
+    $methods['contact_us_shipping'] = 'WC_Shipping_Contact_Us';
     return $methods;
 }
 
-// Force custom shipping method for sample products
+// Force custom shipping method for sample and contact us products
 add_filter('woocommerce_package_rates', 'force_sample_shipping_method', 100, 2);
 function force_sample_shipping_method($rates, $package) {
     $is_sample_package = false;
+    $is_contact_us_package = false;
     
     foreach ($package['contents'] as $item) {
         $shipping_class = $item['data']->get_shipping_class();
         if ($shipping_class === 'sample-product') {
             $is_sample_package = true;
+            break;
+        } elseif ($shipping_class === 'contact-us') {
+            $is_contact_us_package = true;
             break;
         }
     }
@@ -929,10 +985,17 @@ function force_sample_shipping_method($rates, $package) {
                 unset($rates[$rate_id]);
             }
         }
-    } else {
-        // Remove sample shipping from non-sample packages
+    } elseif ($is_contact_us_package) {
+        // Remove all other shipping methods for contact-us package
         foreach ($rates as $rate_id => $rate) {
-            if ('sample_product_shipping' === $rate->method_id) {
+            if ('contact_us_shipping' !== $rate->method_id) {
+                unset($rates[$rate_id]);
+            }
+        }
+    } else {
+        // Remove custom shipping methods from non-custom packages
+        foreach ($rates as $rate_id => $rate) {
+            if ('sample_product_shipping' === $rate->method_id || 'contact_us_shipping' === $rate->method_id) {
                 unset($rates[$rate_id]);
             }
         }
