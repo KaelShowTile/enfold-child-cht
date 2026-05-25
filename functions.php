@@ -1252,16 +1252,6 @@ function custom_override_get_availability( $availability, $_product ) {
             $availability['availability'] = $stock_quantity . " in stock.";
         }
 
-        /*
-        if ( $step_value == null || $step_value == 1 ) {
-            if($product_suffix){
-                $availability['availability'] = $stock_quantity . " " . $product_suffix . " in stock.";
-            }else{
-                $availability['availability'] = $stock_quantity . " in stock.";
-            }
-        } else {
-            $availability['availability'] = $stock_quantity . " " . $box_suffix . " in stock.";
-        }*/
     }
     return $availability;
 }
