@@ -806,6 +806,13 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 
 .page-template-default a.glint-quick-link{color: #232f3d;}
 .glint-quick-links .glint-quick-link .glint-quick-link-icon img.emoji{height: 18px !important; vertical-align: middle !important; width: auto !important;}
+.glint-chatbot-widget .glint-chatbot-toggle{width: 160px; border-radius: 10px; background: rgba(255, 255, 255, 0.95);}
+.glint-chatbot-widget .glint-chatbot-toggle div{margin-top: 3px;}
+.glint-chatbot-toggle img{ width: 32px; display: inline-block; margin: 2px 6px 0 0; float: left; }
+.glint-chatbot-toggle p{ display: inline-block; font-size: 0.85rem; margin: auto; line-height: 1.3; color: #000; text-align: left;}	
+.glint-chatbot-toggle p span{ color: #00bde9; }
+#top #scroll-top-link{ bottom: 80px; }
+
 
 /*css animation*/
 @keyframes popup-title {
