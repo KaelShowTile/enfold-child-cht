@@ -804,6 +804,8 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .glint-stock-notice{margin: 2px 0 10px;}
 .glint-stock-notice p{color: #ff0000;}
 
+.page-template-default a.glint-quick-link{color: #232f3d;}
+.glint-quick-links .glint-quick-link .glint-quick-link-icon img.emoji{height: 18px !important; vertical-align: middle !important; width: auto !important;}
 
 /*css animation*/
 @keyframes popup-title {
