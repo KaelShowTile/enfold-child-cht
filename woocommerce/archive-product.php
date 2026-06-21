@@ -86,7 +86,7 @@ if ( woocommerce_product_loop() ) {
 	<div class="archive-list-header">
 		<div id="call-glint-filter">
 			<img src="<?php echo get_site_url(); ?>/wp-content/uploads/2025/05/fliter.svg">
-			<p>Fliters</p>
+			<p>Filters</p>
 		</div>
 		<div class="cht-product-fliter-title"><?php echo do_shortcode('[glint_product_filters]'); ?></div>
 	</div>
