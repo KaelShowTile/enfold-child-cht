@@ -1021,6 +1021,19 @@ function exclude_category_from_shop($query) {
     }
 }
 
+//exclude sample category from sitemap
+add_filter( 'wpseo_sitemap_entry', 'exclude_sample_category_from_sitemap', 10, 3 );
+function exclude_sample_category_from_sitemap( $url, $type, $post ) {
+    if ( $type === 'post' && get_post_type( $post ) === 'product' ) {
+        $excluded_category = 'sample-tiles'; 
+
+        if ( has_term( $excluded_category, 'product_cat', $post->ID ) ) {
+            return false; 
+        }
+    }
+    return $url;
+}
+
 //don't load recaptcha if there is no contact form
 function prohibit_google_recaptcha( $prohibited ){
   global $post;
