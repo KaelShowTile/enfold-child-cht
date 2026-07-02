@@ -680,6 +680,7 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 #blog-list-container .slide-entry-title.entry-title a{text-transform: capitalize; letter-spacing: 0.5px; font-size: 1.25rem;}
 #cht-blog-container .slide-entry-title.entry-title a{text-transform: capitalize; letter-spacing: 0.5px; font-size: 1.25rem;}
 #cht-blog-container .slide-meta{display: none;}
+#top.post-template-default.single.single-post .glint-menu-item p{color: #fff;}
 
 #top .fullsize .template-blog .post .entry-content-wrapper{max-width: 1280px;}
 #top .fullsize .template-blog .post .entry-content-wrapper > *{max-width: 1280px;}
@@ -707,6 +708,9 @@ ul.woocommerce-error{background-color: #f8f8f8;}
 .related-articles .related_article{display: inline-block; align-items: center; margin-bottom: 20px;}
 .related-articles .related_article img{width: 100%;}
 .related-articles .related_article p{font-size: 0.85rem; line-height: 1.2; margin: 10px auto;}
+#top #wrap_all .regluar-price-sidebar， #top #wrap_all .regluar-price-sidebar ins{color: #333;}
+#top #wrap_all .regluar-price-sidebar ins::before{display: none;}
+
 
 /* blog sidebar when using layout editor with full width container */
 .av_default_container_wrap .av-section-cont-open #cht-blog-sidebar-container{margin: 0; width: 100%;}

@@ -102,7 +102,7 @@
 											echo '<span><del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $sale_price . '</span></bdi></span></del>';
 											echo '<ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $regular_price . '</bdi></span></ins>' . $display_product_suffix . '</span>';
 										}else{
-											echo '<span><ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $regular_price . '</bdi></span></ins>' . $display_product_suffix . '</span>';	
+											echo '<span class="regluar-price-sidebar"><ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $regular_price . '</bdi></span></ins>' . $display_product_suffix . '</span>';	
 										}
 									}
 									echo '</div>';
