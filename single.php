@@ -71,40 +71,46 @@
 
 							foreach($related_tile_ids as $tile_id){
 								$related_tiles = wc_get_product( $tile_id );
-								$tile_permalink = get_permalink( $tile_id );
-								$product_thumbnail_url = get_the_post_thumbnail_url( $tile_id, 'woocommerce_thumbnail' );
-								$product_title = get_the_title( $tile_id );
-								
-								$product_suffix = get_product_qty_suffix($tile_id);
-								$display_product_suffix = "";
-								if($product_suffix){
-									$display_product_suffix = '/' . $product_suffix;
-								}
-								
-								echo '<a href="' . $tile_permalink . '">';
-								echo '<div class="related_tile">';
-								echo '<img src="' . $product_thumbnail_url . '">';
-								echo '<p>' . $product_title . '</p>';
-								
-								echo '<div class="price">';
-								if($product_suffix != 'm2'){
-									echo '<span>' . $related_tiles->get_price_html() . $display_product_suffix . '</span>';
-								}else{
-									$step_value = round(get_product_qty_data($tile_id), 2);
-									$regular_price = round((($related_tiles->get_regular_price())/$step_value), 2);
-
-									if ($related_tiles->is_on_sale()){
-										$sale_price = round((($related_tiles->get_sale_price())/$step_value), 2);
-										echo '<span><del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $sale_price . '</span></bdi></span></del>';
-										echo '<ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $regular_price . '</bdi></span></ins>' . $display_product_suffix . '</span>';
-									}else{
-										echo '<span><ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $regular_price . '</bdi></span></ins>' . $display_product_suffix . '</span>';	
+								if($related_tiles){
+									$tile_permalink = get_permalink( $tile_id );
+									$product_thumbnail_url = get_the_post_thumbnail_url( $tile_id, 'woocommerce_thumbnail' );
+									$product_title = get_the_title( $tile_id );
+									
+									$product_suffix = get_product_qty_suffix($tile_id);
+									$display_product_suffix = "";
+									if($product_suffix){
+										$display_product_suffix = '/' . $product_suffix;
 									}
+									
+									echo '<a href="' . $tile_permalink . '">';
+									echo '<div class="related_tile">';
+									echo '<img src="' . $product_thumbnail_url . '">';
+									echo '<p>' . $product_title . '</p>';
+									
+									echo '<div class="price">';
+									if($product_suffix != 'm2'){
+										echo '<span>' . $related_tiles->get_price_html() . $display_product_suffix . '</span>';
+									}else{
+										$step_value = round(get_product_qty_data($tile_id), 2);
+										if($step_value <= 0){
+											$step_value = 1;
+										}
+										$regular_price = round((($related_tiles->get_regular_price())/$step_value), 2);
+
+										if ($related_tiles->is_on_sale()){
+											$sale_price = round((($related_tiles->get_sale_price())/$step_value), 2);
+											echo '<span><del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $sale_price . '</span></bdi></span></del>';
+											echo '<ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $regular_price . '</bdi></span></ins>' . $display_product_suffix . '</span>';
+										}else{
+											echo '<span><ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>' . $regular_price . '</bdi></span></ins>' . $display_product_suffix . '</span>';	
+										}
+									}
+									echo '</div>';
+									
+									echo '</div>';
+									echo '</a>';
 								}
-								echo '</div>';
 								
-								echo '</div>';
-								echo '</a>';
 							}
 							echo '</div>';
 						}
