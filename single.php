@@ -73,6 +73,7 @@
 								$related_tiles = wc_get_product( $tile_id );
 								$tile_permalink = get_permalink( $tile_id );
 								$product_thumbnail_url = get_the_post_thumbnail_url( $tile_id, 'woocommerce_thumbnail' );
+								$product_title = get_the_title( $tile_id );
 								
 								$product_suffix = get_product_qty_suffix($tile_id);
 								$display_product_suffix = "";
@@ -83,7 +84,7 @@
 								echo '<a href="' . $tile_permalink . '">';
 								echo '<div class="related_tile">';
 								echo '<img src="' . $product_thumbnail_url . '">';
-								echo '<p>' . $related_tiles->get_name() . '</p>';
+								echo '<p>' . $product_title . '</p>';
 								
 								echo '<div class="price">';
 								if($product_suffix != 'm2'){
