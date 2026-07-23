@@ -67,3 +67,32 @@ channel.onmessage = function(event) {
         }, 1000);
     }
 };
+
+//omnisend newsletter listening
+document.addEventListener('DOMContentLoaded', function() {
+        let hasAutoChecked = false;
+
+        const observer = new MutationObserver(function(mutations, me) {
+            const checkbox = document.getElementById('subscribe-to-newsletter');
+            
+            if (checkbox && !hasAutoChecked) {
+                if (!checkbox.checked) {
+                    checkbox.click();
+                }
+                
+                hasAutoChecked = true;
+                me.disconnect(); 
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+        
+        setTimeout(function() {
+            if (!hasAutoChecked) {
+                observer.disconnect();
+            }
+        }, 20000);
+    });
